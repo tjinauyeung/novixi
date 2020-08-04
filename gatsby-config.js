@@ -22,5 +22,8 @@ module.exports = {
     {
       resolve: `gatsby-transformer-sharp`
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+    }
   ],
 }

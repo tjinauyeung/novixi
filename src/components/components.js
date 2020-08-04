@@ -1,6 +1,4 @@
 import Page from "./page";
-import Teaser from "./teaser";
-import Feature from "./feature";
 import NavItem from "./nav_item";
 import ComponentNotFound from "./component_not_found";
 
@@ -11,8 +9,6 @@ import TwoColumns from "./two-columns";
 
 const ComponentList = {
   page: Page,
-  teaser: Teaser,
-  feature: Feature,
   nav_item: NavItem,
   splash: Splash,
   testimonial: Testimonial,

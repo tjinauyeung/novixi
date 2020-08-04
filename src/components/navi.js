@@ -1,5 +1,5 @@
 import React from 'react'
-import Components from './components.js';
+// import Components from './components.js';
 
 // const Navi = (props) => (
 //   <nav className="navbar navbar-expand navbar-light bg-light">

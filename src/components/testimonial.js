@@ -14,8 +14,8 @@ const Wrapper = styled.div`
 
 const Avatar = styled.div`
   border-radius: 100%;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-image: ${(props) => `url(${props.image})` || "none"};
   background-color: #f2f2f2;
   background-size: contain;
@@ -26,9 +26,9 @@ const Avatar = styled.div`
     content: "";
     display: block;
     position: absolute;
-    top: 40px;
+    top: 50px;
     width: 180px;
-    height: 300px;
+    height: 320px;
     border-bottom: 150px solid transparent;
     border-left: 180px solid var(--color-primary-light);
 

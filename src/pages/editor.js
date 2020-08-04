@@ -2,7 +2,6 @@ import React from "react";
 import Components from "../components/components.js";
 import SbEditable from "storyblok-react";
 import config from "../../gatsby-config";
-import Navi from "../components/navi.js";
 
 let sbConfigs = config.plugins.filter((item) => {
   return item.resolve === "gatsby-source-storyblok";
@@ -37,7 +36,7 @@ const getParam = function (val) {
 class StoryblokEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { story: null, globalNavi: { content: {} } };
+    this.state = { story: null };
   }
 
   componentDidMount() {
@@ -55,20 +54,6 @@ class StoryblokEntry extends React.Component {
       },
       (data) => {
         this.setState({ story: data.story });
-        this.loadGlovalNavi(data.story.lang);
-      }
-    );
-  }
-
-  loadGlovalNavi(lang) {
-    const language = lang === "default" ? "" : lang + "/";
-    window.storyblok.get(
-      {
-        slug: `${language}global-navi`,
-        version: "draft",
-      },
-      (data) => {
-        this.setState({ globalNavi: data.story });
       }
     );
   }
@@ -101,16 +86,14 @@ class StoryblokEntry extends React.Component {
 
   render() {
     if (this.state.story == null) {
-      return <div></div>;
+      return <div />;
     }
 
-    let content = this.state.story.content;
-    let globalNavi = this.state.globalNavi.content;
+    const content = this.state.story.content;
 
     return (
       <SbEditable content={content}>
         <div>
-          <Navi blok={globalNavi}></Navi>
           {React.createElement(Components(content.component), {
             key: content._uid,
             blok: content,

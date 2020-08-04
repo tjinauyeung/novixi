@@ -7,7 +7,7 @@ import Layout from "./layout";
 
 const Wrapper = styled.div`
   text-align: center;
-  padding: 20px 0;
+  padding: 50px 0;
 `;
 
 const Grid = styled.div`
@@ -20,7 +20,7 @@ const Grid = styled.div`
   padding-bottom: 60px;
 `;
 
-const Testimonials = (props) => (
+const ThreeColumnSection = (props) => (
   <SbEditable content={props.blok}>
     <Layout>
       <Wrapper>
@@ -38,4 +38,4 @@ const Testimonials = (props) => (
   </SbEditable>
 );
 
-export default Testimonials;
+export default ThreeColumnSection;

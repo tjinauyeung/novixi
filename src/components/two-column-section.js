@@ -12,34 +12,33 @@ const Columns = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
-const Column = styled.div`
+const Column = styled.p`
   display: flex;
   text-align: left;
   padding: 20px;
 `;
 
 const Section = styled.div`
-  padding: 30px 0;
-`
+  padding: 50px 0;
+`;
 
-const TwoColumns = (props) => (
+const TwoColumnSection = (props) => (
   <SbEditable content={props.blok}>
     <Wrapper>
       <Layout>
         <Section>
-
-        <Header>{props.blok.title}</Header>
-        <Columns>
-          <Column>{props.blok.column_left}</Column>
-          <Column>{props.blok.column_right}</Column>
-        </Columns>
+          <Header>{props.blok.title}</Header>
+          <Columns>
+            <Column>{props.blok.column_left}</Column>
+            <Column>{props.blok.column_right}</Column>
+          </Columns>
         </Section>
       </Layout>
     </Wrapper>
   </SbEditable>
 );
 
-export default TwoColumns;
+export default TwoColumnSection;

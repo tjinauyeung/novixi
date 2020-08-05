@@ -17,6 +17,7 @@ const Styles = createGlobalStyle`
     --color-primary: #0094bb;
     --color-primary-light: #c7e8ee;
     --color-primary-lighter: #e2f5f8;
+    --color-primary-dark: #00446c;
     --color-secondary: #ffa800;
 
     --font-family-sans-serif: 'Open Sans', sans-serif;

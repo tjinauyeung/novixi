@@ -5,6 +5,10 @@ import styled from "styled-components";
 import Header from "./header";
 import Layout from "./layout";
 
+const Container = styled.div`
+  background: #fff;
+`;
+
 const Wrapper = styled.div`
   text-align: center;
   padding: 50px 0;
@@ -22,19 +26,21 @@ const Grid = styled.div`
 
 const ThreeColumnSection = (props) => (
   <SbEditable content={props.blok}>
-    <Layout>
-      <Wrapper>
-        <Header>{props.blok.title}</Header>
-        <Grid>
-          {props.blok.columns.map((blok) =>
-            React.createElement(Components(blok.component), {
-              key: blok._uid,
-              blok: blok,
-            })
-          )}
-        </Grid>
-      </Wrapper>
-    </Layout>
+    <Container>
+      <Layout>
+        <Wrapper>
+          <Header>{props.blok.title}</Header>
+          <Grid>
+            {props.blok.columns.map((blok) =>
+              React.createElement(Components(blok.component), {
+                key: blok._uid,
+                blok: blok,
+              })
+            )}
+          </Grid>
+        </Wrapper>
+      </Layout>
+    </Container>
   </SbEditable>
 );
 

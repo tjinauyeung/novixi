@@ -5,7 +5,9 @@ import TwoColumnSection from "./two-column-section";
 import ThreeColumnSection from "./three-column-section";
 import ComponentNotFound from "./component_not_found";
 import GradientCard from "./gradient-card";
+import Footer from './footer';
 import Wave from "./wave";
+import Form from "./form";
 
 const ComponentList = {
   page: Page,
@@ -17,6 +19,8 @@ const ComponentList = {
   two_column_section: TwoColumnSection,
   gradient_card: GradientCard,
   wave: Wave,
+  footer: Footer,
+  form: Form
 };
 
 const Components = (type) => {

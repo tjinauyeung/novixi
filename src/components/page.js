@@ -15,12 +15,14 @@ const Body = styled.main`
 `;
 
 const NavBar = styled.header`
-  background: var(--color-primary);
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
   width: 100%;
+  font-family: var(--font-family-narrow);
+  z-index: 100;
+  background: var(--color-primary);
 `;
 
 const Nav = styled.nav`
@@ -33,21 +35,27 @@ const Nav = styled.nav`
 const NavItem = styled.li`
   color: #fff;
   padding: 20px;
+  font-size: 18px;
   text-transform: uppercase;
 `;
 
-const Footer = styled.footer`
-  background: var(--color-primary-dark);
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-`;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+`
+
+const Img = styled.img`
+  max-width: 150px;
+`
 
 const Page = (props) => (
   <Wrapper>
     <Styles />
     <NavBar>
       <Layout>
+        <Header>
+        <Img src={props.blok.logo && props.blok.logo.filename} />
         <Nav>
           <NavItem>Novixi</NavItem>
           <NavItem>Wat wij bieden</NavItem>
@@ -55,6 +63,7 @@ const Page = (props) => (
           <NavItem>Referenties</NavItem>
           <NavItem>Contact</NavItem>
         </Nav>
+        </Header>
       </Layout>
     </NavBar>
     <Body>
@@ -66,7 +75,6 @@ const Page = (props) => (
           })
         )}
     </Body>
-    <Footer>{props.blok.footer}</Footer>
   </Wrapper>
 );
 

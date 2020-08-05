@@ -22,6 +22,7 @@ const Styles = createGlobalStyle`
 
     --font-family-sans-serif: 'Open Sans', sans-serif;
     --font-family-serif: 'Poly', serif;
+    --font-family-narrow: 'Pathway Gothic One', serif;
   }
 
   p {

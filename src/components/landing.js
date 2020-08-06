@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import SbEditable from "storyblok-react";
 import styled from "styled-components";
 import Layout from "./layout";
@@ -10,6 +10,12 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   background: var(--color-primary);
+  background: linear-gradient(
+    to bottom,
+    var(--color-primary),
+    var(--color-primary),
+    #077a99
+  );
   padding: 200px 80px 100px;
   position: ${(props) => (props.fixed ? "fixed" : "static")};
   top: 0;
@@ -40,17 +46,26 @@ const Desc = styled.p`
 
 const Image = styled.img`
   position: absolute;
-  top: 0;
+  top: auto;
   right: 0;
   bottom: 0;
   left: 50%;
   object-fit: contain;
-  max-height: 100%;
+  max-height: 95%;
   transform: translateY(100px);
   z-index: -1;
+  filter: ${(props) => (props.blur ? `blur(${20 * props.blur}px)` : "none")};
 `;
 
-const PositionedContent = ({ blok, fixed, show, outOfView }) => (
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+const PositionedContent = ({ blok, fixed, show, blur }) => (
   <Content fixed={fixed} show={show}>
     <Layout start="true">
       <Title>
@@ -69,17 +84,32 @@ const PositionedContent = ({ blok, fixed, show, outOfView }) => (
           })}
       </Title>
       <Desc>{blok.description}</Desc>
-      <Image src={blok.image && blok.image.filename} blur={outOfView} />
+      <Image src={blok.image && blok.image.filename} blur={blur} />
     </Layout>
   </Content>
 );
 
 const Landing = (props) => {
+  const ref = useRef(null);
+  const [blur, setBlur] = useState(0);
+
+  useEffect(() => {
+    document.addEventListener("scroll", handleScroll);
+    return () => document.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = (e) => {
+    const top = ref.current.getBoundingClientRect().top;
+    const blur = (Number(top) / 600) * -1;
+    setBlur(blur);
+  };
+
   return (
     <SbEditable content={props.blok}>
-      <Wrapper>
-        <PositionedContent blok={props.blok} fixed show />
+      <Wrapper ref={ref}>
+        <PositionedContent blok={props.blok} fixed show blur={blur} />
         <PositionedContent blok={props.blok} />
+        <Overlay blur={blur} />
         <Wave fill="#fff" style={{ position: "absolute", bottom: 0 }} />
       </Wrapper>
     </SbEditable>

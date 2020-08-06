@@ -7,6 +7,7 @@ const Header = styled.span`
   font-family: var(--font-family-serif);
   text-align: center;
   position: relative;
+  max-width: 700px;
 
   &:after {
     position: absolute;

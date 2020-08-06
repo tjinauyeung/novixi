@@ -33,10 +33,35 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.li`
+  display: inline-block;
   color: #fff;
-  padding: 20px;
-  font-size: 18px;
+  padding: 20px 0;
+  margin: 0 20px;
+  font-size: 20px;
   text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    width: 0;
+    transform: translateX(100%);
+    background: #fff;
+    height: 1px;
+    opacity: 0;
+    transition: all 300ms ease;
+  }
+
+  &:hover:after {
+    width: 50%;
+    opacity: 1;
+    transform: translateX(100%);
+  }
 `;
 
 const Header = styled.header`
@@ -46,7 +71,7 @@ const Header = styled.header`
 `
 
 const Img = styled.img`
-  max-width: 150px;
+  max-width: 140px;
 `
 
 const Page = (props) => (

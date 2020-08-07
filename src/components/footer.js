@@ -71,6 +71,20 @@ const Footer = (props) => (
                 <ContactValue>{props.blok.contact_phone}</ContactValue>
               </div>
             </ContactItem>
+            <ContactItem>
+              <Phone width={18} height={18} fill="#fff" strokeWidth={0} />
+              <div>
+                <ContactValue>{props.blok.contact_phone}</ContactValue>
+                <ContactValue>{props.blok.contact_phone}</ContactValue>
+              </div>
+            </ContactItem>
+            <ContactItem>
+              <Phone width={18} height={18} fill="#fff" strokeWidth={0} />
+              <div>
+                <ContactValue>{props.blok.contact_phone}</ContactValue>
+                <ContactValue>{props.blok.contact_phone}</ContactValue>
+              </div>
+            </ContactItem>
           </Contact>
         </Content>
       </Layout>

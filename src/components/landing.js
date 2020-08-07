@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SbEditable from "storyblok-react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Layout from "./layout";
 import Wave from "./wave";
 
@@ -44,17 +44,21 @@ const Desc = styled.p`
   max-width: 540px;
 `;
 
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
 const Image = styled.img`
+  height: 700px;
   position: absolute;
   top: auto;
   right: 0;
   bottom: 0;
   left: 50%;
-  object-fit: contain;
-  max-height: 95%;
-  transform: translateY(100px);
-  z-index: -1;
-  filter: ${(props) => (props.blur ? `blur(${20 * props.blur}px)` : "none")};
+  opacity: 0;
+  animation: ${fadeIn} 1000ms forwards ease-in-out;
+  animation-delay: 300ms;
 `;
 
 const Overlay = styled.div`
@@ -65,51 +69,48 @@ const Overlay = styled.div`
   bottom: 0;
 `;
 
-const PositionedContent = ({ blok, fixed, show, blur }) => (
-  <Content fixed={fixed} show={show}>
-    <Layout start="true">
-      <Title>
-        {blok.title &&
-          blok.title.content &&
-          blok.title.content.map((entry, i) => {
-            if (entry.content) {
-              return entry.content.map((span) => (
-                <Text key={span.text} emphasize={span.marks}>
-                  {span.text}
-                </Text>
-              ));
-            } else {
-              return <br />;
-            }
-          })}
-      </Title>
-      <Desc>{blok.description}</Desc>
-      <Image src={blok.image && blok.image.filename} blur={blur} />
-    </Layout>
-  </Content>
-);
+const PositionedContent = ({ blok, fixed, show, image }) => {
+  return (
+    <Content fixed={fixed} show={show}>
+      <Layout start="true">
+        <Title>
+          {blok.title &&
+            blok.title.content &&
+            blok.title.content.map((entry, i) => {
+              if (entry.content) {
+                return entry.content.map((span) => (
+                  <Text key={span.text} emphasize={span.marks}>
+                    {span.text}
+                  </Text>
+                ));
+              } else {
+                return <br />;
+              }
+            })}
+        </Title>
+        <Desc>{blok.description}</Desc>
+        <Image src={image} />
+      </Layout>
+    </Content>
+  );
+};
 
 const Landing = (props) => {
-  const ref = useRef(null);
-  const [blur, setBlur] = useState(0);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
-    return () => document.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleScroll = (e) => {
-    const top = ref.current.getBoundingClientRect().top;
-    const blur = (Number(top) / 600) * -1;
-    setBlur(blur);
-  };
+    const image = props.blok[`image_${Math.ceil(Math.random() * 4)}`];
+    if (image) {
+      setImage(image.filename);
+    }
+  }, [props.blok]);
 
   return (
     <SbEditable content={props.blok}>
-      <Wrapper ref={ref}>
-        <PositionedContent blok={props.blok} fixed show blur={blur} />
-        <PositionedContent blok={props.blok} />
-        <Overlay blur={blur} />
+      <Wrapper>
+        <PositionedContent blok={props.blok} fixed show image={image} />
+        <PositionedContent blok={props.blok} image={image} />
+        <Overlay />
         <Wave fill="#fff" style={{ position: "absolute", bottom: 0 }} />
       </Wrapper>
     </SbEditable>

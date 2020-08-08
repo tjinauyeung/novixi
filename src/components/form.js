@@ -96,6 +96,33 @@ const Button = styled.button`
   }
 `;
 
+const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  margin-right: 50px;
+  cursor: pointer;
+`;
+
+const Check = styled.span`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary-light);
+  box-shadow: inset 0 0 0 5px #fff;
+  margin-right: 10px;
+  transition: all 100ms ease;
+`;
+
+const Checkbox = styled.input`
+  display: none;
+
+  &:checked + ${Check} {
+    background: var(--color-primary);
+    box-shadow: inset 0 0 0 2px #fff;
+  }
+`;
+
 const Form = (props) => {
   const ref = useRef(null);
   const [focus, setFocus] = useState(false);
@@ -197,22 +224,28 @@ const Form = (props) => {
                 <Label htmlFor="contact_preference">
                   {props.blok.form_contact_preference}
                 </Label>
-                <input
-                  type="radio"
-                  name="contact_preference_phone"
-                  value="by_phone"
-                />
-                <Label htmlFor="contact_preference_phone">
-                  {props.blok.form_contact_preference_phone}
-                </Label>
-                <input
-                  type="radio"
-                  name="contact_preference"
-                  value="by_email"
-                />
-                <Label htmlFor="contact_preference_email">
-                  {props.blok.form_contact_preference_email}
-                </Label>
+
+                <div style={{ display: "flex" }}>
+                  <CheckboxLabel>
+                    <Checkbox
+                      type="radio"
+                      name="contact_preference"
+                      value="by_phone"
+                    />
+                    <Check />
+                    <span>{props.blok.form_contact_preference_phone}</span>
+                  </CheckboxLabel>
+
+                  <CheckboxLabel>
+                    <Checkbox
+                      type="radio"
+                      name="contact_preference"
+                      value="by_email"
+                    />
+                    <Check />
+                    <span>{props.blok.form_contact_preference_email}</span>
+                  </CheckboxLabel>
+                </div>
               </div>
             </Row>
             <Button>{props.blok.form_button}</Button>

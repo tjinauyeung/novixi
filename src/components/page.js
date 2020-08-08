@@ -6,6 +6,8 @@ import Layout from "./layout";
 
 const Wrapper = styled.div`
   min-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 `;
@@ -68,11 +70,18 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 0;
-`
+`;
 
 const Img = styled.img`
   max-width: 140px;
-`
+`;
+
+const to = (id) => (e) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+};
 
 const Page = (props) => (
   <Wrapper>
@@ -80,14 +89,24 @@ const Page = (props) => (
     <NavBar>
       <Layout>
         <Header>
-        <Img src={props.blok.logo && props.blok.logo.filename} />
-        <Nav>
-          <NavItem>Novixi</NavItem>
-          <NavItem>Wat wij bieden</NavItem>
-          <NavItem>Hoe wij ons onderscheiden</NavItem>
-          <NavItem>Referenties</NavItem>
-          <NavItem>Contact</NavItem>
-        </Nav>
+          <Img src={props.blok.logo && props.blok.logo.filename} />
+          <Nav>
+            <NavItem onClick={to(props.blok.nav_item_1)}>
+              {props.blok.nav_item_1_label}
+            </NavItem>
+            <NavItem onClick={to(props.blok.nav_item_2)}>
+              {props.blok.nav_item_2_label}
+            </NavItem>
+            <NavItem onClick={to(props.blok.nav_item_3)}>
+              {props.blok.nav_item_3_label}
+            </NavItem>
+            <NavItem onClick={to(props.blok.nav_item_4)}>
+              {props.blok.nav_item_4_label}
+            </NavItem>
+            <NavItem onClick={to(props.blok.nav_item_5)}>
+              {props.blok.nav_item_5_label}
+            </NavItem>
+          </Nav>
         </Header>
       </Layout>
     </NavBar>

@@ -3,13 +3,15 @@ import SbEditable from "storyblok-react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 30px;
-  flex: 1;
+  margin: 10px;
+  flex: 1 0 380px;
   position: relative;
 `
 
@@ -17,7 +19,8 @@ const Gradient = styled.div`
   display: block;
   position: absolute;
   top: 85px;
-  width: 390px;
+  max-width: 390px;
+  width: 100%;
   height: 200px;
   background: linear-gradient(to bottom, var(--color-primary-light) 0%, transparent 100%);
   left: 50%;
@@ -40,6 +43,10 @@ const Title = styled.h1`
   font-weight: 400;
   font-size: 30px;
   margin-top: 20px;
+  max-width: 240px;
+  flex: 1;
+  display: flex;
+  align-items: center;
   z-index: 1;
 `;
 

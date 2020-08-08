@@ -16,11 +16,11 @@ const Wrapper = styled.div`
 const Bg = styled.div`
   display: block;
   position: absolute;
-  top: 105px;
-  width: 180px;
-  height: 320px;
-  border-bottom: 150px solid transparent;
-  border-left: 180px solid var(--color-primary-light);
+  top: 115px;
+  width: 220px;
+  height: 350px;
+  border-bottom: 180px solid transparent;
+  border-left: 220px solid var(--color-primary-light);
 
   left: 50%;
   transform: translateX(-50%);
@@ -29,8 +29,8 @@ const Bg = styled.div`
 
 const Avatar = styled.div`
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-image: ${(props) => `url(${props.image})` || "none"};
   background-color: #f2f2f2;
   background-size: contain;
@@ -60,6 +60,7 @@ const Description = styled.p`
   text-align: center;
   font-weight: 300;
   position: relative;
+  flex: 1;
 `;
 
 const Role = styled.p`

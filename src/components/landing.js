@@ -22,7 +22,28 @@ const Content = styled.div`
   left: 0;
   right: 0;
   z-index: -1;
+  min-height: 95vh;
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const blurIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 `;
 
 const Text = styled.span`
@@ -32,33 +53,34 @@ const Text = styled.span`
 const Title = styled.h1`
   color: #fff;
   font-family: var(--font-family-serif);
+  font-weight: 400;
   font-size: 60px;
   line-height: 1.3;
   max-width: 650px;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  animation: ${fadeIn} 800ms forwards ease-in-out;
+  animation-delay: 300ms;
+  opacity: 0;
 `;
 
 const Desc = styled.p`
   margin-top: 40px;
   color: #fff;
   max-width: 540px;
-`;
-
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: ${fadeIn} 1400ms forwards ease-in-out;
+  animation-delay: 600ms;
+  opacity: 0;
 `;
 
 const Image = styled.img`
-  height: 700px;
+  height: 80vh;
   position: absolute;
   top: auto;
   right: 0;
   bottom: 0;
   left: 50%;
   opacity: 0;
-  animation: ${fadeIn} 1000ms forwards ease-in-out;
-  animation-delay: 300ms;
+  animation: ${blurIn} 2000ms forwards ease;
+  animation-delay: 600ms;
 `;
 
 const Overlay = styled.div`
@@ -68,6 +90,10 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
 `;
+
+const Spacer = styled.div`
+  min-height: 95vh;
+`
 
 const PositionedContent = ({ blok, fixed, show, image }) => {
   return (
@@ -99,6 +125,22 @@ const Landing = (props) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
+    if (props.blok) {
+      const images = [
+        props.blok.image_1.filename,
+        props.blok.image_2.filename,
+        props.blok.image_3.filename,
+        props.blok.image_4.filename
+      ];
+      // prefetch
+      images.forEach(url => {
+        const img = new window.Image();
+        img.src = url;
+      })
+    }
+  }, [props.blok]);
+
+  useEffect(() => {
     const image = props.blok[`image_${Math.ceil(Math.random() * 4)}`];
     if (image) {
       setImage(image.filename);
@@ -109,7 +151,7 @@ const Landing = (props) => {
     <SbEditable content={props.blok}>
       <Wrapper>
         <PositionedContent blok={props.blok} fixed show image={image} />
-        <PositionedContent blok={props.blok} image={image} />
+        <Spacer />
         <Overlay />
         <Wave fill="#fff" style={{ position: "absolute", bottom: 0 }} />
       </Wrapper>

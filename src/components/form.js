@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Header from "./header";
 import Layout from "./layout";
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Description = styled.p`
-  max-width: 750px;
+  max-width: 800px;
   margin: 40px auto 0;
 `;
 
@@ -20,111 +20,104 @@ const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: stretch;
   width: 100%;
-  max-width: 660px;
-  padding: 20px;
+  max-width: 720px;
+  padding: 50px 0;
   margin: auto;
-`;
-
-const Input = styled.input`
-  padding: 12px;
-  font-family: var(--font-family-sans-serif);
-  font-size: 14px;
-  width: 100%;
-  border: 1px solid #222;
-  flex: 1;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Row = styled.div`
   display: flex;
   gap: 20px;
-  margin: 20px 0;
+  margin: 15px 0;
   flex: 1;
   width: 100%;
 
   div {
     flex: 1;
-  }
-
-  [type="radio"]:checked,
-  [type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
-  }
-  [type="radio"]:checked + label,
-  [type="radio"]:not(:checked) + label {
     position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
-  }
-  [type="radio"]:checked + label:before,
-  [type="radio"]:not(:checked) + label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
-  }
-  [type="radio"]:checked + label:after,
-  [type="radio"]:not(:checked) + label:after {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background: #f87da9;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-  }
-  [type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  [type="radio"]:checked + label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
   }
 `;
 
 const Label = styled.label`
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
 `;
 
-const TextArea = styled.textarea`
-  width: 100%;
-  border: 1px solid #222;
-  min-height: 150px;
+const Input = styled.input`
+  padding: 18px;
   font-family: var(--font-family-sans-serif);
-  font-size: 14px;
-  padding: 12px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  flex: 1;
+  transition: all 200ms ease;
 
   &:focus {
+    box-shadow: 0 0 0 3px var(--color-primary-light);
     outline: none;
   }
 `;
 
-const Radio = styled.input``;
+const TextArea = styled.textarea`
+  width: 100%;
+  border: none;
+  min-height: 180px;
+  font-family: var(--font-family-sans-serif);
+  font-size: 16px;
+  padding: 18px;
+  appearance: none;
+  resize: none;
 
-const Button = styled.button``;
+  &:focus {
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  background: var(--color-primary);
+  border: none;
+  padding: 18px 20px;
+  width: 100%;
+  color: #fff;
+  font-size: 20px;
+  font-family: var(--font-family-narrow);
+  text-transform: uppercase;
+  transition: all 200ms ease;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: var(--color-primary-dark);
+  }
+`;
 
 const Form = (props) => {
+  const ref = useRef(null);
+  const [focus, setFocus] = useState(false);
   const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setFocus(true);
+          }
+        });
+      },
+      {
+        root: document.querySelector("null"),
+        rootMargin: "0px",
+        threshold: 1.0,
+      }
+    );
+    observer.observe(ref.current);
+  }, []);
 
   const submit = (ev) => {
     ev.preventDefault();
@@ -147,7 +140,8 @@ const Form = (props) => {
 
   return (
     <SbEditable content={props.blok}>
-      <Wrapper>
+      <Wrapper id="contact">
+        <div ref={ref} />
         <Layout>
           <Header>{props.blok.title}</Header>
           <Description>{props.blok.description}</Description>
@@ -158,28 +152,44 @@ const Form = (props) => {
           >
             <Row>
               <div>
-                <Label>{props.blok.form_name}</Label>
-                <Input type="name" name="name" />
+                <Input
+                  htmlFor="name"
+                  type="name"
+                  name="name"
+                  focus={focus}
+                  placeholder={props.blok.form_name}
+                />
               </div>
               <div>
-                <Label htmlFor="phone">{props.blok.form_company}</Label>
-                <Input type="company" name="company" />
-              </div>
-            </Row>
-            <Row>
-              <div>
-                <Label>{props.blok.form_email}</Label>
-                <Input type="email" name="email" />
-              </div>
-              <div>
-                <Label htmlFor="phone">{props.blok.form_phone}</Label>
-                <Input type="phone" name="phone" />
+                <Input
+                  type="company"
+                  name="company"
+                  placeholder={props.blok.form_company}
+                />
               </div>
             </Row>
             <Row>
               <div>
-                <Label htmlFor="message">{props.blok.form_message}</Label>
-                <TextArea name="message" />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder={props.blok.form_email}
+                />
+              </div>
+              <div>
+                <Input
+                  type="phone"
+                  name="phone"
+                  placeholder={props.blok.form_phone}
+                />
+              </div>
+            </Row>
+            <Row>
+              <div>
+                <TextArea
+                  name="message"
+                  placeholder={props.blok.form_message}
+                />
               </div>
             </Row>
             <Row>
@@ -187,19 +197,19 @@ const Form = (props) => {
                 <Label htmlFor="contact_preference">
                   {props.blok.form_contact_preference}
                 </Label>
-                <Radio
+                <input
                   type="radio"
                   name="contact_preference_phone"
                   value="by_phone"
-                ></Radio>
+                />
                 <Label htmlFor="contact_preference_phone">
                   {props.blok.form_contact_preference_phone}
                 </Label>
-                <Radio
+                <input
                   type="radio"
                   name="contact_preference"
                   value="by_email"
-                ></Radio>
+                />
                 <Label htmlFor="contact_preference_email">
                   {props.blok.form_contact_preference_email}
                 </Label>

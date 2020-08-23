@@ -11,8 +11,10 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1.0"
           />
           {this.props.headComponents}
-          <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Pathway+Gothic+One&family=Poly&display=swap" as="style" />
-          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Pathway+Gothic+One&family=Poly&display=swap" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Pathway+Gothic+One&family=Poly:ital@0;1&display=swap"
+            rel="stylesheet"
+          ></link>
         </head>
         <body>
           <div

@@ -1,5 +1,5 @@
 import React from "react";
-import Components from "../components/components.js";
+import SbComponents from "../sb-components";
 
 class StoryblokEntry extends React.Component {
   static getDerivedStateFromProps(props, state) {
@@ -24,7 +24,7 @@ class StoryblokEntry extends React.Component {
     const content = this.state.story.content;
     return (
       <div>
-        {React.createElement(Components(content.component), {
+        {React.createElement(SbComponents(content.component), {
           key: content._uid,
           blok: content,
         })}

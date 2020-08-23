@@ -1,36 +1,23 @@
 import React from "react";
 import SbEditable from "storyblok-react";
 import styled from "styled-components";
+import fadeIn from "../../../hoc/fadeIn";
 
 const Wrapper = styled.div`
-  max-width: 400px;
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 30px;
-  margin: 10px;
-  flex: 1 0 380px;
+  min-height: 300px;
   position: relative;
-`
-
-const Gradient = styled.div`
-  display: block;
-  position: absolute;
-  top: 85px;
-  max-width: 390px;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, var(--color-primary-light) 0%, transparent 100%);
-  left: 50%;
-  transform: translateX(-50%);
-  right: 0;
+  text-align: left;
+  justify-content: flex-start;
 `;
 
 const Image = styled.div`
   width: 120px;
   height: 120px;
+  margin-top: 20px;
+  margin-right: 50px;
   background-image: ${(props) => `url(${props.url})` || "none"};
   background-size: contain;
   background-repeat: no-repeat;
@@ -52,20 +39,21 @@ const Title = styled.h1`
 
 const Desc = styled.p`
   font-family: var(--font-family-sans-serif);
-  max-width: 320px;
+  max-width: 380px;
   margin-top: 20px;
   z-index: 1;
 `;
 
-const GradientCard = (props) => (
+const Offer = (props) => (
   <SbEditable content={props.blok}>
     <Wrapper>
-      <Gradient />
       <Image url={props.blok.image && props.blok.image.filename} />
-      <Title>{props.blok.title}</Title>
-      <Desc>{props.blok.description}</Desc>
+      <div>
+        <Title>{props.blok.title}</Title>
+        <Desc>{props.blok.description}</Desc>
+      </div>
     </Wrapper>
   </SbEditable>
 );
 
-export default GradientCard;
+export default fadeIn(Offer);

@@ -3,26 +3,26 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   max-width: 700px;
-  text-align: center;
-  margin: auto;
 `;
 
 const Span = styled.span`
   font-size: 42px;
   font-weight: 400;
   line-height: 1.4;
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-narrow);
+  text-transform: uppercase;
   position: relative;
   max-width: 700px;
   transition: all 1500ms ease;
   opacity: ${(props) => (props.visible ? 1 : 0)};
+  color: ${props => props.color || "#000"};
 
   &:after {
     display: block;
     content: "";
     width: 0;
     height: 1px;
-    background: var(--color-primary);
+    background: ${props => props.color || '#000'};
     position: absolute;
     bottom: -10px;
     left: 0;
@@ -47,7 +47,7 @@ const Span = styled.span`
   }
 `;
 
-const Header = ({ children }) => {
+const Heading = ({ children, color }) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -71,9 +71,9 @@ const Header = ({ children }) => {
 
   return (
     <Wrapper ref={ref}>
-      <Span visible={visible}>{children}</Span>
+      <Span visible={visible} color={color}>{children}</Span>
     </Wrapper>
   );
 };
 
-export default Header;
+export default Heading;

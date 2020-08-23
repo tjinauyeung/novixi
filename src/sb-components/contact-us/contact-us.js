@@ -1,17 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import Header from "./header";
-import Layout from "./layout";
 import SbEditable from "storyblok-react";
-
-const Wrapper = styled.div`
-  background: linear-gradient(to bottom, var(--color-primary-lighter), #fff);
-  padding: 80px 50px 100px;
-`;
+import styled from "styled-components";
+import Heading from "../../components/heading";
+import Layout from "../../components/layout";
+import Section from "../../components/section";
 
 const Description = styled.p`
-  max-width: 800px;
-  margin: 40px auto 0;
+  max-width: 750px;
+  margin: 80px auto;
+  font-size: 24px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 `;
 
 const FormWrapper = styled.form`
@@ -21,27 +26,20 @@ const FormWrapper = styled.form`
   justify-content: stretch;
   width: 100%;
   max-width: 720px;
-  padding: 50px 0;
-  margin: auto;
+  margin: 0 auto 100px;
 `;
 
 const Row = styled.div`
-  display: flex;
-  gap: 20px;
-  margin: 15px 0;
+  display: grid;
+  margin: 15px;
   flex: 1;
   width: 100%;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
 
   div {
-    flex: 1;
     position: relative;
   }
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 16px;
-  text-align: left;
 `;
 
 const Input = styled.input`
@@ -67,6 +65,7 @@ const TextArea = styled.textarea`
   font-size: 16px;
   padding: 18px;
   appearance: none;
+  grid-column: span 2;
   resize: none;
 
   &:focus {
@@ -79,6 +78,7 @@ const Button = styled.button`
   background: var(--color-primary);
   border: none;
   padding: 18px 20px;
+  margin-top: 20px;
   width: 100%;
   color: #fff;
   font-size: 20px;
@@ -99,17 +99,22 @@ const Button = styled.button`
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  padding: 14px 0;
+  padding: 0 0 12px;
   margin-right: 50px;
   cursor: pointer;
+
+  span {
+    color: #777;
+  }
 `;
 
 const Check = styled.span`
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   border: 2px solid var(--color-primary-light);
-  box-shadow: inset 0 0 0 5px #fff;
+  box-shadow: inset 0 0 0 50px #fff;
   margin-right: 10px;
   transition: all 100ms ease;
 `;
@@ -119,11 +124,11 @@ const Checkbox = styled.input`
 
   &:checked + ${Check} {
     background: var(--color-primary);
-    box-shadow: inset 0 0 0 2px #fff;
+    box-shadow: inset 0 0 0 5px #fff;
   }
 `;
 
-const Form = (props) => {
+const ContactUs = (props) => {
   const ref = useRef(null);
   const [focus, setFocus] = useState(false);
   const [status, setStatus] = useState("");
@@ -167,18 +172,18 @@ const Form = (props) => {
 
   return (
     <SbEditable content={props.blok}>
-      <Wrapper id="contact">
-        <div ref={ref} />
+      <div ref={ref} />
+      <Section background="var(--color-bg-light)">
         <Layout>
-          <Header>{props.blok.title}</Header>
-          <Description>{props.blok.description}</Description>
-          <FormWrapper
-            onSubmit={submit}
-            action="https://formspree.io/xoqkrrlk"
-            method="POST"
-          >
-            <Row>
-              <div>
+          <Wrapper>
+            <Heading>{props.blok.title}</Heading>
+            <Description>{props.blok.description}</Description>
+            <FormWrapper
+              onSubmit={submit}
+              action="https://formspree.io/xoqkrrlk"
+              method="POST"
+            >
+              <Row>
                 <Input
                   htmlFor="name"
                   type="name"
@@ -186,74 +191,59 @@ const Form = (props) => {
                   focus={focus}
                   placeholder={props.blok.form_name}
                 />
-              </div>
-              <div>
+
                 <Input
                   type="company"
                   name="company"
                   placeholder={props.blok.form_company}
                 />
-              </div>
-            </Row>
-            <Row>
-              <div>
+              </Row>
+              <Row>
                 <Input
                   type="email"
                   name="email"
                   placeholder={props.blok.form_email}
                 />
-              </div>
-              <div>
+
                 <Input
                   type="phone"
                   name="phone"
                   placeholder={props.blok.form_phone}
                 />
-              </div>
-            </Row>
-            <Row>
-              <div>
+              </Row>
+              <Row>
                 <TextArea
                   name="message"
                   placeholder={props.blok.form_message}
                 />
-              </div>
-            </Row>
-            <Row>
-              <div>
-                <Label htmlFor="contact_preference">
-                  {props.blok.form_contact_preference}
-                </Label>
-
-                <div style={{ display: "flex" }}>
-                  <CheckboxLabel>
-                    <Checkbox
-                      type="radio"
-                      name="contact_preference"
-                      value="by_phone"
-                    />
-                    <Check />
-                    <span>{props.blok.form_contact_preference_phone}</span>
-                  </CheckboxLabel>
-
-                  <CheckboxLabel>
-                    <Checkbox
-                      type="radio"
-                      name="contact_preference"
-                      value="by_email"
-                    />
-                    <Check />
-                    <span>{props.blok.form_contact_preference_email}</span>
-                  </CheckboxLabel>
-                </div>
-              </div>
-            </Row>
-            <Button>{props.blok.form_button}</Button>
-          </FormWrapper>
+              </Row>
+              <Row>
+                <CheckboxLabel>
+                  <Checkbox
+                    type="radio"
+                    name="contact_preference"
+                    value="by_phone"
+                  />
+                  <Check />
+                  <span>{props.blok.form_contact_preference_phone}</span>
+                </CheckboxLabel>
+                <CheckboxLabel>
+                  <Checkbox
+                    type="radio"
+                    name="contact_preference"
+                    value="by_email"
+                  />
+                  <Check />
+                  <span>{props.blok.form_contact_preference_email}</span>
+                </CheckboxLabel>
+              </Row>
+              <Button>{props.blok.form_button}</Button>
+            </FormWrapper>
+          </Wrapper>
         </Layout>
-      </Wrapper>
+      </Section>
     </SbEditable>
   );
 };
 
-export default Form;
+export default ContactUs;

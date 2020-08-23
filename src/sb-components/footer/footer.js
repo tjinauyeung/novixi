@@ -1,11 +1,10 @@
 import React from "react";
 import SbEditable from "storyblok-react";
 import styled from "styled-components";
-import Layout from "./layout";
-import Wave from "./wave";
-import Phone from "../icons/phone";
-import LinkedIn from "../icons/linkedin";
-import Email from "../icons/email";
+import Layout from "../../components/layout";
+import Wave from "../../components/wave";
+import { Phone, LinkedIn, Email } from "../../icons";
+import _ from 'lodash';
 
 const Wrapper = styled.footer`
   background: var(--color-primary);
@@ -19,7 +18,13 @@ const Logo = styled.img`
 `;
 
 const Icon = styled.div`
-  padding: 5px;
+  border-radius: 500px;
+  background: var(--color-primary-dark);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ContactItem = styled.div`
@@ -41,18 +46,19 @@ const ContactValue = styled.a`
 
 const Title = styled.h1`
   text-align: left;
-  font-size: 18px;
-  font-family: var(--font-family-serif);
+  font-size: 24px;
+  font-family: var(--font-family-narrow);
+  text-transform: uppercase;
   font-weight: 400;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const Content = styled.div`
   padding: 50px 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  gap: 20px;
   min-height: 250px;
 `;
 
@@ -74,13 +80,18 @@ const AboutParagraph = styled.p`
 const Spacer = styled.span`
   display: block;
   min-height: 20px;
-`
+`;
 const Footer = (props) => (
   <SbEditable content={props.blok}>
     <Wrapper>
       <Wave
         fill="var(--color-primary)"
-        styles={{ position: "absolute", bottom: "100%", width: "100vw" }}
+        styles={{
+          position: "absolute",
+          bottom: "100%",
+          marginBottom: -2,
+          width: "100vw",
+        }}
       />
       <Layout>
         <Content>
@@ -107,7 +118,7 @@ const Footer = (props) => (
                   height={22}
                   fill="#fff"
                   strokeWidth={2}
-                  stroke="var(--color-primary)"
+                  stroke="var(--color-primary-dark)"
                 />
               </Icon>
               <div>
@@ -121,7 +132,10 @@ const Footer = (props) => (
                 <LinkedIn width={20} height={20} fill="#fff" strokeWidth={0} />
               </Icon>
               <div>
-                <ContactValue href={props.blok.contact_linkedin}>
+                <ContactValue
+                  href={props.blok.contact_linkedin}
+                  target="_blank"
+                >
                   {props.blok.contact_linkedin_label}
                 </ContactValue>
               </div>
@@ -130,19 +144,17 @@ const Footer = (props) => (
           <About>
             <Title>{props.blok.about_title}</Title>
             <AboutParagraph>
-              {props.blok.about_description &&
-                props.blok.about_description.content &&
-                props.blok.about_description.content.map((entry, i) => {
+              {_.get(props, "blok.about_description.content", []).map(
+                (entry, i) => {
                   if (entry.content) {
                     return entry.content.map((span) => (
-                      <span key={i}>
-                        {span.text}
-                      </span>
+                      <span key={i}>{span.text}</span>
                     ));
                   } else {
-                    return <Spacer key={i} />
+                    return <Spacer key={i} />;
                   }
-                })}
+                }
+              )}
             </AboutParagraph>
           </About>
         </Content>

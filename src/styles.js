@@ -13,8 +13,10 @@ const Styles = createGlobalStyle`
     --color-primary: #0094bb;
     --color-primary-light: #c7e8ee;
     --color-primary-lighter: #e2f5f8;
-    --color-primary-dark: #00446c;
+    --color-primary-dark: #2c6b90;
     --color-secondary: #ffa800;
+    --color-bg-light: #EAF1F3;
+    --color-bg-dark: #0094BB;
 
     --font-family-sans-serif: 'Open Sans', sans-serif;
     --font-family-serif: 'Poly', serif;
@@ -30,6 +32,7 @@ const Styles = createGlobalStyle`
   p {
     font-size: 18px;
     line-height: 1.8;
+    font-weight: 300;
 
     @media screen and (max-width: 380px) {
       font-size: 16px;

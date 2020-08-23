@@ -1,6 +1,6 @@
 import React from "react";
-import Components from "../components/components.js";
 import SbEditable from "storyblok-react";
+import SbComponents from "../sb-components";
 import config from "../../gatsby-config";
 
 let sbConfigs = config.plugins.filter((item) => {
@@ -94,7 +94,7 @@ class StoryblokEntry extends React.Component {
     return (
       <SbEditable content={content}>
         <div>
-          {React.createElement(Components(content.component), {
+          {React.createElement(SbComponents(content.component), {
             key: content._uid,
             blok: content,
           })}

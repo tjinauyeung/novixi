@@ -13,15 +13,24 @@ const appear = keyframes`
   }
 `;
 
-const Wrapper = styled.a`
-  display: inline-block;
+const Wrapper = styled.div`
   position: fixed;
   z-index: 10000;
   bottom: 80px;
-  border-radius: 500px;
   right: 80px;
+
+  @media screen and (max-width: 450px) {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 50px 30px;
+  }
+`;
+
+const Badge = styled.a`
+  display: flex;
+  border-radius: 500px;
   padding: 18px 32px 18px 18px;
-  min-width: 300px;
   background: #fff;
   box-shadow: 0 0 200px rgba(0, 0, 0, 0.5);
   display: flex;
@@ -36,6 +45,10 @@ const Wrapper = styled.a`
   &:hover {
     box-shadow: 0 0 200px rgba(0, 0, 0, 0.8);
   }
+
+  @media screen and (max-width: 450px) {
+    padding: 14px 32px 14px 14px;
+  }
 `;
 
 const Avatar = styled.div`
@@ -48,6 +61,11 @@ const Avatar = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
+  @media screen and (max-width: 450px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const Title = styled.h1`
@@ -59,17 +77,20 @@ const Title = styled.h1`
 const Description = styled.p`
   font-size: 14px;
   font-weight: 400;
+  width: 100%;
   margin: 0;
 `;
 
 const ContactBadge = ({ blok }) => (
   <SbEditable content={blok}>
-    <Wrapper href={blok.phone}>
-      <Avatar image={blok.image && blok.image.filename} />
-      <div>
-        <Title>{blok.title}</Title>
-        <Description>{blok.description}</Description>
-      </div>
+    <Wrapper>
+      <Badge href={blok.phone} target="_blank">
+        <Avatar image={blok.image && blok.image.filename} />
+        <div>
+          <Title>{blok.title}</Title>
+          <Description>{blok.description}</Description>
+        </div>
+      </Badge>
     </Wrapper>
   </SbEditable>
 );

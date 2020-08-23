@@ -26,14 +26,20 @@ const slideIn = keyframes`
 
 const Wrapper = styled.div`
   position: relative;
+  max-width: 100vw;
+  overflow: hidden;
 `;
 
 const Content = styled.div`
   display: flex;
-  min-height: 95vh;
   max-width: 1280px;
+  min-height: calc(100vh - 80px);
   margin: auto;
   position: relative;
+
+  @media (max-width: 768px) {
+    max-width: 768px;
+  }
 `;
 
 const Title = styled.h1`
@@ -47,11 +53,24 @@ const Title = styled.h1`
   flex-direction: column;
   flex: 1;
   z-index: 1;
-  padding: 20px;
-  max-width: 700px;
+  padding: 50px;
+  max-width: 750px;
   animation: ${fadeIn} 800ms forwards ease-in-out;
   animation-delay: 300ms;
   opacity: 0;
+
+  @media screen and (max-width: 768px) {
+    font-size: 40px;
+    max-width: 500px;
+    padding: 200px 30px 0;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 28px;
+    padding: 120px 30px;
+    text-align: center;
+  }
 `;
 
 const Text = styled.span`
@@ -61,14 +80,22 @@ const Text = styled.span`
 const Image = styled.img`
   position: absolute;
   bottom: 0;
-  right: -240px;
+  right: -25vh;
   max-height: 80vh;
   opacity: 0;
   animation: ${slideIn} 2000ms forwards ease;
   animation-delay: 600ms;
 
-  @media only screen and (max-width: 768px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    max-height: 70vh;
+    right: -10vh;
+  }
+
+  @media (max-width: 450px) {
+    max-height: 60vh;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 `;
 
@@ -119,7 +146,7 @@ const Landing = ({ blok }) => {
           </Title>
           <Image src={image} />
         </Content>
-        <Wave fill="#fff" style={{ position: "absolute", bottom: 0 }} />
+        <Wave fill="#fff" style={{ position: "absolute", bottom: -2 }} />
       </Wrapper>
     </SbEditable>
   );

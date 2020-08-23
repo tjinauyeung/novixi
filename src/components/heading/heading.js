@@ -42,7 +42,11 @@ const Span = styled.span`
     }
   `}
 
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media screen and (max-width: 450px) {
     font-size: 30px;
   }
 `;

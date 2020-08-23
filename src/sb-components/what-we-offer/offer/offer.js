@@ -11,6 +11,12 @@ const Wrapper = styled.div`
   position: relative;
   text-align: left;
   justify-content: flex-start;
+
+  @media only screen and (max-width: 450px) {
+    flex-direction: column;
+    margin-bottom: 50px;
+    align-items: center;
+  }
 `;
 
 const Image = styled.div`
@@ -23,6 +29,25 @@ const Image = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+  }
+`;
+
+const Text = styled.div`
+  @media only screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -35,6 +60,15 @@ const Title = styled.h1`
   display: flex;
   align-items: center;
   z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    font-size: 24px;
+    text-align: center;
+  }
 `;
 
 const Desc = styled.p`
@@ -42,16 +76,25 @@ const Desc = styled.p`
   max-width: 380px;
   margin-top: 20px;
   z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    font-size: 16px;
+    text-align: center;
+  }
 `;
 
 const Offer = (props) => (
   <SbEditable content={props.blok}>
     <Wrapper>
       <Image url={props.blok.image && props.blok.image.filename} />
-      <div>
+      <Text>
         <Title>{props.blok.title}</Title>
         <Desc>{props.blok.description}</Desc>
-      </div>
+      </Text>
     </Wrapper>
   </SbEditable>
 );

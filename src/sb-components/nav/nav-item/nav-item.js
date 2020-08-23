@@ -32,12 +32,17 @@ const Wrapper = styled.li`
     opacity: 1;
     transform: translateX(100%);
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    margin: 0 10px;
+  }
 `;
 
 const to = (id) => (e) => {
   const el = document.getElementById(id);
   if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.scrollIntoView({ behavior: "smooth" });
   }
 };
 

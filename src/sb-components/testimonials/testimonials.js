@@ -1,6 +1,6 @@
 import React from "react";
 import SbEditable from "storyblok-react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import SbComponents from "../../sb-components";
 import Heading from "../../components/heading";
 import Layout from "../../components/layout";
@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
 const Testimonials = ({ blok }) => (
   <SbEditable content={blok}>
+    <div id="testimonials" />
     <Section>
       <Layout>
         <Wrapper>

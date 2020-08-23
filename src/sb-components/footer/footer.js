@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Layout from "../../components/layout";
 import Wave from "../../components/wave";
 import { Phone, LinkedIn, Email } from "../../icons";
-import _ from 'lodash';
+import _ from "lodash";
 
 const Wrapper = styled.footer`
   background: var(--color-primary);
@@ -13,8 +13,16 @@ const Wrapper = styled.footer`
   font-family: var(--font-family-sans-serif);
 `;
 
+const Padding = styled.div`
+  padding: 80px 50px 120px;
+`
+
 const Logo = styled.img`
   max-width: 120px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Icon = styled.div`
@@ -36,6 +44,7 @@ const ContactItem = styled.div`
 const Contact = styled.div`
   max-width: 600px;
   text-align: left;
+  margin-bottom: 80px;
 `;
 
 const ContactValue = styled.a`
@@ -55,19 +64,31 @@ const Title = styled.h1`
 `;
 
 const Content = styled.div`
-  padding: 50px 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 2fr 3fr;
   gap: 20px;
   min-height: 250px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 450px) {
+    display: block;
+  }
 `;
 
 const FooterBar = styled.div`
   color: #fff;
   text-align: center;
-  padding: 50px;
+  padding: 30px;
   text-transform: uppercase;
   font-size: 12px;
+
+  @media screen and (max-width: 450px) {
+    padding: 15px;
+  }
 `;
 
 const About = styled.div``;
@@ -93,72 +114,79 @@ const Footer = (props) => (
           width: "100vw",
         }}
       />
-      <Layout>
-        <Content>
-          <Logo src={props.blok.logo && props.blok.logo.filename} />
-          <Contact>
-            <Title>Contact</Title>
-            <ContactItem>
-              <Icon>
-                <Phone width={20} height={20} fill="#fff" strokeWidth={0} />
-              </Icon>
-              <div>
-                <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
-                  {props.blok.contact_phone_mobile}
-                </ContactValue>
-                <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
-                  {props.blok.contact_phone_office}
-                </ContactValue>
-              </div>
-            </ContactItem>
-            <ContactItem>
-              <Icon>
-                <Email
-                  width={22}
-                  height={22}
-                  fill="#fff"
-                  strokeWidth={2}
-                  stroke="var(--color-primary-dark)"
-                />
-              </Icon>
-              <div>
-                <ContactValue href={`mailto:${props.blok.contact_email}`}>
-                  {props.blok.contact_email}
-                </ContactValue>
-              </div>
-            </ContactItem>
-            <ContactItem>
-              <Icon>
-                <LinkedIn width={20} height={20} fill="#fff" strokeWidth={0} />
-              </Icon>
-              <div>
-                <ContactValue
-                  href={props.blok.contact_linkedin}
-                  target="_blank"
-                >
-                  {props.blok.contact_linkedin_label}
-                </ContactValue>
-              </div>
-            </ContactItem>
-          </Contact>
-          <About>
-            <Title>{props.blok.about_title}</Title>
-            <AboutParagraph>
-              {_.get(props, "blok.about_description.content", []).map(
-                (entry, i) => {
-                  if (entry.content) {
-                    return entry.content.map((span) => (
-                      <span key={i}>{span.text}</span>
-                    ));
-                  } else {
-                    return <Spacer key={i} />;
+      <Padding>
+        <Layout>
+          <Content>
+            <Logo src={props.blok.logo && props.blok.logo.filename} />
+            <Contact>
+              <Title>Contact</Title>
+              <ContactItem>
+                <Icon>
+                  <Phone width={20} height={20} fill="#fff" strokeWidth={0} />
+                </Icon>
+                <div>
+                  <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
+                    {props.blok.contact_phone_mobile}
+                  </ContactValue>
+                  <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
+                    {props.blok.contact_phone_office}
+                  </ContactValue>
+                </div>
+              </ContactItem>
+              <ContactItem>
+                <Icon>
+                  <Email
+                    width={22}
+                    height={22}
+                    fill="#fff"
+                    strokeWidth={2}
+                    stroke="var(--color-primary-dark)"
+                  />
+                </Icon>
+                <div>
+                  <ContactValue href={`mailto:${props.blok.contact_email}`}>
+                    {props.blok.contact_email}
+                  </ContactValue>
+                </div>
+              </ContactItem>
+              <ContactItem>
+                <Icon>
+                  <LinkedIn
+                    width={20}
+                    height={20}
+                    fill="#fff"
+                    strokeWidth={0}
+                  />
+                </Icon>
+                <div>
+                  <ContactValue
+                    href={props.blok.contact_linkedin}
+                    target="_blank"
+                  >
+                    {props.blok.contact_linkedin_label}
+                  </ContactValue>
+                </div>
+              </ContactItem>
+            </Contact>
+            <About>
+              <Title>{props.blok.about_title}</Title>
+              <AboutParagraph>
+                {_.get(props, "blok.about_description.content", []).map(
+                  (entry, i) => {
+                    if (entry.content) {
+                      return entry.content.map((span) => (
+                        <span key={i}>{span.text}</span>
+                      ));
+                    } else {
+                      return <Spacer key={i} />;
+                    }
                   }
-                }
-              )}
-            </AboutParagraph>
-          </About>
-        </Content>
-      </Layout>
+                )}
+              </AboutParagraph>
+            </About>
+          </Content>
+        </Layout>
+      </Padding>
       <FooterBar>{props.blok.footer_bar_text}</FooterBar>
     </Wrapper>
   </SbEditable>

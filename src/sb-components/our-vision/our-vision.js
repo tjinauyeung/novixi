@@ -19,16 +19,26 @@ const Description = styled.p`
   font-size: 24px;
   font-weight: 300;
   margin-top: 60px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 18px;
+    margin-top: 30px;
+  }
 `;
 
 const REGEX_NEW_LINE = /\r?\n/;
 
 const OurVision = ({ blok }) => (
   <SbEditable content={blok}>
+    <div id="our-vision" />
     <Section>
       <Layout>
         <Container>
-          <div id="our_vision" />
           <Heading>{blok.title}</Heading>
           {blok.description
             .split(REGEX_NEW_LINE)

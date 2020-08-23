@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import SbEditable from "storyblok-react";
 import styled from "styled-components";
 import Heading from "../../components/heading";
@@ -9,6 +9,15 @@ const Description = styled.p`
   max-width: 750px;
   margin: 80px auto;
   font-size: 24px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 60px auto;
+    font-size: 18px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -40,6 +49,12 @@ const Row = styled.div`
   div {
     position: relative;
   }
+
+  @media screen and (max-width: 450px) {
+    display: block;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -54,6 +69,12 @@ const Input = styled.input`
   &:focus {
     box-shadow: 0 0 0 3px var(--color-primary-light);
     outline: none;
+  }
+
+  @media screen and (max-width: 450px) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -129,27 +150,7 @@ const Checkbox = styled.input`
 `;
 
 const ContactUs = (props) => {
-  const ref = useRef(null);
-  const [focus, setFocus] = useState(false);
   const [status, setStatus] = useState("");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setFocus(true);
-          }
-        });
-      },
-      {
-        root: document.querySelector("null"),
-        rootMargin: "0px",
-        threshold: 1.0,
-      }
-    );
-    observer.observe(ref.current);
-  }, []);
 
   const submit = (ev) => {
     ev.preventDefault();
@@ -172,7 +173,7 @@ const ContactUs = (props) => {
 
   return (
     <SbEditable content={props.blok}>
-      <div ref={ref} />
+      <div id="contact-us" />
       <Section background="var(--color-bg-light)">
         <Layout>
           <Wrapper>
@@ -188,7 +189,6 @@ const ContactUs = (props) => {
                   htmlFor="name"
                   type="name"
                   name="name"
-                  focus={focus}
                   placeholder={props.blok.form_name}
                 />
 

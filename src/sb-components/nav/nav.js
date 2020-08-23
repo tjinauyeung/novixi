@@ -15,6 +15,11 @@ const Wrapper = styled.header`
   padding: 0 20px;
 `;
 
+const FlexEnd = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const NavList = styled.nav`
   list-style: none;
   padding: 0;
@@ -22,7 +27,7 @@ const NavList = styled.nav`
   justify-content: flex-end;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 450px) {
     display: none;
   }
 `;
@@ -37,6 +42,11 @@ const Logo = styled.img`
   max-width: 110px;
   height: 100%;
   margin: 20px 0;
+
+  @media (max-width: 450px) {
+    max-width: 80px;
+    margin: 20px 0;
+  }
 `;
 
 const Lang = styled.div`
@@ -56,18 +66,19 @@ const Nav = ({ blok }) => (
       <Layout>
         <Header>
           <Logo src={blok.logo && blok.logo.filename} />
-
-          <NavList>
-            {blok.links.map((link) =>
-              React.createElement(SbComponents(link.component), {
-                key: link._uid,
-                blok: link,
-              })
-            )}
+          <FlexEnd>
+            <NavList>
+              {blok.links.map((link) =>
+                React.createElement(SbComponents(link.component), {
+                  key: link._uid,
+                  blok: link,
+                })
+              )}
+            </NavList>
             <a href="/english">
               <Lang image={blok.language} />
             </a>
-          </NavList>
+          </FlexEnd>
         </Header>
       </Layout>
     </Wrapper>

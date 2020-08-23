@@ -23,7 +23,7 @@ const Description = styled.p`
   text-align: center;
   font-size: 36px;
   line-height: 1.3;
-  max-width: 850px;
+  max-width: 800px;
   min-height: 200px;
   display: flex;
   align-items: center;
@@ -37,6 +37,14 @@ const Description = styled.p`
     font-family: var(--font-family-serif);
     font-style: italic;
     flex: 1;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 24px;
+    }
   }
 `;
 
@@ -55,17 +63,32 @@ const Avatar = styled.div`
   background-color: #f2f2f2;
   background-size: contain;
   background-position: center;
+
+  @media screen and (max-width: 450px) {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+  }
 `;
 
 const Role = styled.p`
   font-weight: 300;
   margin: 0;
+
+  @media screen and (max-width: 450px) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 `;
 
 const Name = styled.h2`
   font-family: var(--font-family-serif);
   font-weight: 400;
   margin: 0;
+
+  @media screen and (max-width: 450px) {
+    font-size: 18px;
+  }
 `;
 
 const Quotemark = styled.em`

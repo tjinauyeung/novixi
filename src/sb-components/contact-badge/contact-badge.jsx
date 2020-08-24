@@ -89,7 +89,7 @@ const Description = styled.p`
 const ContactBadge = ({ blok }) => (
   <SbEditable content={blok}>
     <Wrapper>
-      <Badge href={blok.phone} target="_blank">
+      <Badge href={blok.phone} target="_blank" rel="noreferrer">
         <Avatar image={blok.image && blok.image.filename} />
         <div>
           <Title>{blok.title}</Title>

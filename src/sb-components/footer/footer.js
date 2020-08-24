@@ -162,6 +162,7 @@ const Footer = (props) => (
                   <ContactValue
                     href={props.blok.contact_linkedin}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     {props.blok.contact_linkedin_label}
                   </ContactValue>

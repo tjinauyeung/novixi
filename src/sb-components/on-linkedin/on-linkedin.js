@@ -94,6 +94,7 @@ const OnLinkedIn = ({ blok }) => (
               style={{ cursor: "pointer" }}
               href="https://www.linkedin.com/posts/mirjamhesselmans_leadership-diversity-inclusion-activity-6694486970413928448-kyzw"
               target="_blank"
+              rel="noreferrer"
             >
               {React.createElement(fadeIn(LinkedInPost), {
                 image: blok.linkedin_post && blok.linkedin_post.filename,

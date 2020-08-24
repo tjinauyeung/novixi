@@ -17,6 +17,7 @@ const Styles = createGlobalStyle`
     --color-secondary: #ffa800;
     --color-bg-light: #EAF1F3;
     --color-bg-dark: #0094BB;
+    --color-bg-linkedin: #0077b5;
 
     --font-family-sans-serif: 'Open Sans', sans-serif;
     --font-family-serif: 'Poly', serif;

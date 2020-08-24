@@ -10,6 +10,7 @@ import Offer from "./what-we-offer/offer";
 import HowWeDiffer from "./how-we-differ";
 import Testimonials from "./testimonials";
 import Testimonial from "./testimonials/testimonial";
+import OnLinkedIn from "./on-linkedin";
 import ContactUs from "./contact-us";
 import ContactBadge from "./contact-badge";
 import Footer from "./footer";
@@ -25,6 +26,7 @@ const Components = {
   how_we_differ: HowWeDiffer,
   testimonials: Testimonials,
   testimonial: Testimonial,
+  on_linkedin: OnLinkedIn,
   contact_us: ContactUs,
   contact_badge: ContactBadge,
   footer: Footer,

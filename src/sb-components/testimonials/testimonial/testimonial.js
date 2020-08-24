@@ -52,16 +52,19 @@ const Person = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  max-width: 320px;
+  width: 100%;
 `;
 
 const Avatar = styled.div`
   border-radius: 100%;
+  flex: 0 0 72px;
   width: 72px;
   height: 72px;
   margin-right: 20px;
   background-image: ${(props) => `url(${props.image})` || "none"};
   background-color: #f2f2f2;
-  background-size: contain;
+  background-size: 115%;
   background-position: center;
   filter: grayscale(100%);
   opacity: 0.8;
@@ -76,6 +79,9 @@ const Avatar = styled.div`
 const Role = styled.p`
   font-weight: 300;
   margin: 0;
+  line-height: 1.5;
+  margin-top: 5px;
+  white-space: nowrap;
 
   @media screen and (max-width: 450px) {
     font-size: 14px;

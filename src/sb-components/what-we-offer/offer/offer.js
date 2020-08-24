@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  min-height: 300px;
+  margin-bottom: 50px;
   position: relative;
   text-align: left;
   justify-content: flex-start;
@@ -60,6 +60,7 @@ const Title = styled.h1`
   display: flex;
   align-items: center;
   z-index: 1;
+  font-size: 32px;
 
   @media screen and (max-width: 768px) {
     font-size: 24px;
@@ -73,8 +74,9 @@ const Title = styled.h1`
 
 const Desc = styled.p`
   font-family: var(--font-family-sans-serif);
-  max-width: 380px;
+  max-width: 500px;
   margin-top: 20px;
+  font-size: 24px;
   z-index: 1;
 
   @media screen and (max-width: 768px) {

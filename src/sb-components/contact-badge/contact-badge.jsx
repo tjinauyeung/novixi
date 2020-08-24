@@ -18,6 +18,11 @@ const Wrapper = styled.div`
   z-index: 10000;
   bottom: 80px;
   right: 80px;
+  transition: all 180ms ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 
   @media screen and (max-width: 450px) {
     left: 0;
@@ -32,18 +37,18 @@ const Badge = styled.a`
   border-radius: 500px;
   padding: 18px 32px 18px 18px;
   background: #fff;
-  box-shadow: 0 0 200px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 200px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   transform: scale(0);
   animation: ${appear} 300ms forwards ease-in-out;
   animation-delay: 3000ms;
 
-  transition: all 300ms ease-in-out;
+  transition: all 180ms ease-in-out;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 200px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 5px 200px rgba(0, 0, 0, 0.4);
   }
 
   @media screen and (max-width: 450px) {

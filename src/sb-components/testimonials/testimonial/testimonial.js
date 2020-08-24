@@ -56,13 +56,15 @@ const Person = styled.div`
 
 const Avatar = styled.div`
   border-radius: 100%;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   margin-right: 20px;
   background-image: ${(props) => `url(${props.image})` || "none"};
   background-color: #f2f2f2;
   background-size: contain;
   background-position: center;
+  filter: grayscale(100%);
+  opacity: 0.8;
 
   @media screen and (max-width: 450px) {
     width: 48px;

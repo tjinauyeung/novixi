@@ -20,7 +20,7 @@ const Col = styled.div`
   flex: 1;
 
   &:last-child {
-    transform: translateX(-60px);
+    transform: translateX(-160px);
 
     @media screen and (max-width: 768px) {
       flex: 2;

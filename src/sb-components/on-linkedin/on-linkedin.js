@@ -58,11 +58,12 @@ const LinkedInPost = styled.div`
   background-image: ${(props) => `url(${props.image})`};
   background-repeat: no-repeat;
   width: 600px;
-  height: 675px;
+  min-height: 675px;
 
   @media screen and (max-width: 450px) {
+    background-position: top;
     width: calc(100vw - 40px);
-    height: 506.25px;
+    min-height: 450px;
   }
 `;
 

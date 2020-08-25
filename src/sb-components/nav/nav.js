@@ -75,9 +75,9 @@ const Nav = ({ blok }) => (
                 })
               )}
             </NavList>
-            <a href="/english">
+            {/* <a href="/english">
               <Lang image={blok.language} />
-            </a>
+            </a> */}
           </FlexEnd>
         </Header>
       </Layout>

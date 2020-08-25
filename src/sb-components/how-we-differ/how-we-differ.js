@@ -81,7 +81,8 @@ const Arrow = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom center;
-  opacity: 0.2;
+  filter: blur(50px);
+  display: none;
 
   @media screen and (max-width: 450px) {
     display: none;

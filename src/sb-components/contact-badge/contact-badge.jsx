@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   transition: all 180ms ease-in-out;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 
   @media screen and (max-width: 450px) {
@@ -54,6 +54,10 @@ const Badge = styled.a`
   @media screen and (max-width: 450px) {
     padding: 14px 32px 14px 14px;
   }
+
+  @media screen and (max-width: 320px) {
+    padding: 10px 20px 10px 10px;
+  }
 `;
 
 const Avatar = styled.div`
@@ -77,6 +81,10 @@ const Title = styled.h1`
   font-size: 16px;
   font-weight: 900;
   margin: 0;
+
+  @media screen and (max-width: 320px) {
+    font-size: 14px;
+  }
 `;
 
 const Description = styled.p`
@@ -84,6 +92,10 @@ const Description = styled.p`
   font-weight: 400;
   width: 100%;
   margin: 0;
+
+  @media screen and (max-width: 320px) {
+    font-size: 12px;
+  }
 `;
 
 const ContactBadge = ({ blok }) => (

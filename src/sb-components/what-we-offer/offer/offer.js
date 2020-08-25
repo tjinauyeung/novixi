@@ -60,7 +60,7 @@ const Title = styled.h1`
   display: flex;
   align-items: center;
   z-index: 1;
-  font-size: 32px;
+  font-size: 30px;
 
   @media screen and (max-width: 768px) {
     font-size: 24px;
@@ -76,7 +76,7 @@ const Desc = styled.p`
   font-family: var(--font-family-sans-serif);
   max-width: 500px;
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 20px;
   z-index: 1;
 
   @media screen and (max-width: 768px) {

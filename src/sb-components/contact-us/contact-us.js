@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SbEditable from "storyblok-react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Heading from "../../components/heading";
 import Layout from "../../components/layout";
 import Section from "../../components/section";
@@ -149,11 +149,77 @@ const Checkbox = styled.input`
   }
 `;
 
-const ContactUs = (props) => {
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const Load = styled.div`
+  display: inline-block;
+  position: relative;
+  width: 22px;
+  height: 22px;
+
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid currentColor;
+    border-radius: 100%;
+    animation: ${spin} 1s linear infinite;
+    border-color: currentColor currentColor transparent transparent;
+  }
+`;
+
+const Loader = () => (
+  <Load>
+    <div></div>
+  </Load>
+);
+
+const SuccessMessage = styled.div`
+  padding: 50px;
+  width: 100%;
+  max-width: 720px;
+  height: 537px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-dark);
+  color: #fff;
+
+  h1 {
+    font-family: var(--font-family-narrow);
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 42px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 24px;
+    margin: 0;
+    margin-top: 10px;
+  }
+`;
+
+const ContactUs = ({ blok }) => {
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submit = (ev) => {
     ev.preventDefault();
+    setLoading(true);
     const form = ev.target;
     const data = new FormData(form);
     const xhr = new XMLHttpRequest();
@@ -162,83 +228,87 @@ const ContactUs = (props) => {
     xhr.onreadystatechange = () => {
       if (xhr.readyState !== XMLHttpRequest.DONE) return;
       if (xhr.status === 200) {
-        form.reset();
         setStatus("SUCCESS");
       } else {
         setStatus("ERROR");
       }
+      setLoading(false);
     };
     xhr.send(data);
   };
 
   return (
-    <SbEditable content={props.blok}>
+    <SbEditable content={blok}>
       <div id="contact-us" />
       <Section background="var(--color-bg-light)">
         <Layout>
           <Wrapper>
-            <Heading>{props.blok.title}</Heading>
-            <Description>{props.blok.description}</Description>
-            <FormWrapper
-              onSubmit={submit}
-              action="https://formspree.io/xoqkrrlk"
-              method="POST"
-            >
-              <Row>
-                <Input
-                  htmlFor="name"
-                  type="name"
-                  name="name"
-                  placeholder={props.blok.form_name}
-                />
-
-                <Input
-                  type="company"
-                  name="company"
-                  placeholder={props.blok.form_company}
-                />
-              </Row>
-              <Row>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder={props.blok.form_email}
-                />
-
-                <Input
-                  type="phone"
-                  name="phone"
-                  placeholder={props.blok.form_phone}
-                />
-              </Row>
-              <Row>
-                <TextArea
-                  name="message"
-                  placeholder={props.blok.form_message}
-                />
-              </Row>
-              <Row>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="radio"
-                    name="contact_preference"
-                    value="by_phone"
+            <Heading>{blok.title}</Heading>
+            <Description>{blok.description}</Description>
+            {status === "SUCCESS" ? (
+              <SuccessMessage>
+                <h1>{blok.success_title}</h1>
+                <p>{blok.success_description}</p>
+              </SuccessMessage>
+            ) : (
+              <FormWrapper
+                onSubmit={submit}
+                action="https://formspree.io/xoqkrrlk"
+                method="POST"
+              >
+                <Row>
+                  <Input
+                    htmlFor="name"
+                    type="name"
+                    name="name"
+                    placeholder={blok.form_name}
                   />
-                  <Check />
-                  <span>{props.blok.form_contact_preference_phone}</span>
-                </CheckboxLabel>
-                <CheckboxLabel>
-                  <Checkbox
-                    type="radio"
-                    name="contact_preference"
-                    value="by_email"
+
+                  <Input
+                    type="company"
+                    name="company"
+                    placeholder={blok.form_company}
                   />
-                  <Check />
-                  <span>{props.blok.form_contact_preference_email}</span>
-                </CheckboxLabel>
-              </Row>
-              <Button>{props.blok.form_button}</Button>
-            </FormWrapper>
+                </Row>
+                <Row>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder={blok.form_email}
+                  />
+
+                  <Input
+                    type="phone"
+                    name="phone"
+                    placeholder={blok.form_phone}
+                  />
+                </Row>
+                <Row>
+                  <TextArea name="message" placeholder={blok.form_message} />
+                </Row>
+                <Row>
+                  <CheckboxLabel>
+                    <Checkbox
+                      type="radio"
+                      name="contact_preference"
+                      value="by_phone"
+                    />
+                    <Check />
+                    <span>{blok.form_contact_preference_phone}</span>
+                  </CheckboxLabel>
+                  <CheckboxLabel>
+                    <Checkbox
+                      type="radio"
+                      name="contact_preference"
+                      value="by_email"
+                    />
+                    <Check />
+                    <span>{blok.form_contact_preference_email}</span>
+                  </CheckboxLabel>
+                </Row>
+                <Button>{loading ? <Loader /> : blok.form_button}</Button>
+              </FormWrapper>
+            )}
           </Wrapper>
         </Layout>
       </Section>

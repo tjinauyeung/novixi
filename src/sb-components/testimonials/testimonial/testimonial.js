@@ -54,6 +54,10 @@ const Person = styled.div`
   margin-top: 10px;
   max-width: 320px;
   width: 100%;
+
+  @media screen and (max-width: 450px) {
+    max-width: 240px;
+  }
 `;
 
 const Avatar = styled.div`
@@ -70,6 +74,7 @@ const Avatar = styled.div`
   opacity: 0.8;
 
   @media screen and (max-width: 450px) {
+    flex: 0 0 48px;
     width: 48px;
     height: 48px;
     margin-right: 12px;
@@ -86,6 +91,7 @@ const Role = styled.p`
   @media screen and (max-width: 450px) {
     font-size: 14px;
     line-height: 1.5;
+    white-space: initial;
   }
 `;
 

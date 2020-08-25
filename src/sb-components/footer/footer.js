@@ -50,6 +50,7 @@ const Contact = styled.div`
 const ContactValue = styled.a`
   display: block;
   font-size: 16px;
+  font-weight: 300;
   padding: 5px 10px;
 `;
 
@@ -66,7 +67,7 @@ const Title = styled.h1`
 const Content = styled.div`
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-columns: 1fr 1fr 2fr;
   gap: 20px;
   min-height: 250px;
 
@@ -96,6 +97,7 @@ const About = styled.div``;
 const AboutParagraph = styled.p`
   text-align: left;
   font-size: 16px;
+  line-height: 2;
 `;
 
 const Spacer = styled.span`

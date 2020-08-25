@@ -71,6 +71,11 @@ const Title = styled.h1`
     padding: 120px 30px;
     text-align: center;
   }
+
+  @media (max-width: 320px) {
+    font-size: 24px;
+    padding: 80px 20px;
+  }
 `;
 
 const Text = styled.span`
@@ -96,6 +101,10 @@ const Image = styled.img`
     left: 0;
     right: 0;
     margin: auto;
+  }
+
+  @media (max-width: 320px) {
+    max-height: 55vh;
   }
 `;
 

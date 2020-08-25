@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: inline-block;
   transition: all 1200ms ease-in-out;
-  transform: translateY(${(props) => (props.visible ? 0 : "10px")});
+  transform: translateY(${(props) => (props.visible ? 0 : "20px")});
   opacity: ${(props) => (props.visible ? 1 : 0)};
 `;
 

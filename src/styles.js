@@ -28,6 +28,7 @@ const Styles = createGlobalStyle`
   html {
     font-family: var(--font-family-sans-serif);
     background: var(--color-primary);
+    overflow-x: hidden;
   }
 
   p {

@@ -15,7 +15,7 @@ const Wrapper = styled.footer`
 
 const Padding = styled.div`
   padding: 80px 50px 120px;
-`
+`;
 
 const Logo = styled.img`
   max-width: 120px;
@@ -86,6 +86,20 @@ const FooterBar = styled.div`
   padding: 30px;
   text-transform: uppercase;
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a,
+  span {
+    display: inline-block;
+    line-height: 1.8;
+    padding: 0 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 
   @media screen and (max-width: 450px) {
     padding: 15px;
@@ -190,7 +204,18 @@ const Footer = (props) => (
           </Content>
         </Layout>
       </Padding>
-      <FooterBar>{props.blok.footer_bar_text}</FooterBar>
+      <FooterBar>
+        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/4e5dd9fe02/novixi-terms-and-conditions-nl.pdf">
+          Terms & Conditions (NL)
+        </a>
+        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/d29adad9a6/novixi-terms-and-conditions-en.pdf">
+          Terms & Conditions (EN)
+        </a>
+        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/d71d3b3d1d/novixi-privacy-statement.pdf">
+          Privacy statement
+        </a>
+        <span>{props.blok.footer_bar_text}</span>
+      </FooterBar>
     </Wrapper>
   </SbEditable>
 );

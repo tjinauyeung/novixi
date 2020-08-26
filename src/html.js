@@ -11,12 +11,12 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1.0"
           />
           <title>
-            NOVIXI - Executive Search — Wij leveren de leiders die bedrijven
+            NOVIXI - Executive Search - Wij leveren de leiders die bedrijven
             begeleiden naar de nieuwe wereld.
           </title>
           <meta
             name="title"
-            content="NOVIXI - Executive Search — Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
           />
           <meta
             name="description"
@@ -26,7 +26,7 @@ export default class HTML extends React.Component {
           <meta property="og:url" content="https://www.novixi.com " />
           <meta
             property="og:title"
-            content="NOVIXI - Executive Search — Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
           />
           <meta
             property="og:description"
@@ -37,7 +37,7 @@ export default class HTML extends React.Component {
           <meta property="twitter:url" content="https://www.novixi.com" />
           <meta
             property="twitter:title"
-            content="NOVIXI - Executive Search — Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
           />
           <meta
             property="twitter:description"

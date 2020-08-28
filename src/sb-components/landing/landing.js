@@ -113,23 +113,15 @@ const Landing = ({ blok }) => {
 
   useEffect(() => {
     if (blok) {
-      const images = [
-        blok.image_1.filename,
-        blok.image_2.filename,
-        blok.image_3.filename,
-        blok.image_4.filename,
-      ];
+      const image = blok[`image_${Math.ceil(Math.random() * 4)}`];
       // prefetch
-      images.forEach((url) => {
-        const img = new window.Image();
-        img.src = url;
-        img.onload = () => {
-          const image = blok[`image_${Math.ceil(Math.random() * 4)}`];
-          if (image) {
-            setImage(image.filename);
-          }
-        };
-      });
+      const img = new window.Image();
+      img.src = image.filename;
+      img.onload = () => {
+        if (image) {
+          setImage(image.filename);
+        }
+      };
     }
   }, [blok]);
 

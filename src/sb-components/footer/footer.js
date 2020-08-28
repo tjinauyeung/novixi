@@ -7,6 +7,8 @@ import { Phone, LinkedIn, Email } from "../../icons";
 import _ from "lodash";
 
 const Wrapper = styled.footer`
+  max-width: 100vw;
+  overflow-x: hidden;
   background: var(--color-primary);
   color: #fff;
   position: relative;
@@ -120,16 +122,15 @@ const Spacer = styled.span`
 `;
 const Footer = (props) => (
   <SbEditable content={props.blok}>
+    <Wave
+      style={{
+        background: "var(--color-bg-light)",
+        maxWidth: "100vw",
+        overflowX: "hidden",
+      }}
+      fill="var(--color-primary)"
+    />
     <Wrapper>
-      <Wave
-        fill="var(--color-primary)"
-        styles={{
-          position: "absolute",
-          bottom: "100%",
-          marginBottom: -2,
-          width: "100vw",
-        }}
-      />
       <Padding>
         <Layout>
           <Content>
@@ -205,13 +206,25 @@ const Footer = (props) => (
         </Layout>
       </Padding>
       <FooterBar>
-        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/4e5dd9fe02/novixi-terms-and-conditions-nl.pdf">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://a.storyblok.com/f/89986/x/4e5dd9fe02/novixi-terms-and-conditions-nl.pdf"
+        >
           Terms & Conditions (NL)
         </a>
-        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/d29adad9a6/novixi-terms-and-conditions-en.pdf">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://a.storyblok.com/f/89986/x/d29adad9a6/novixi-terms-and-conditions-en.pdf"
+        >
           Terms & Conditions (EN)
         </a>
-        <a target="_blank" rel="noreferrer" href="https://a.storyblok.com/f/89986/x/d71d3b3d1d/novixi-privacy-statement.pdf">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://a.storyblok.com/f/89986/x/d71d3b3d1d/novixi-privacy-statement.pdf"
+        >
           Privacy statement
         </a>
         <span>{props.blok.footer_bar_text}</span>

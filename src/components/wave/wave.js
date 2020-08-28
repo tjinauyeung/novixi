@@ -1,10 +1,19 @@
 import React from "react";
 
-const Wave = ({ width = "calc(100vw + 20px)", fill = "white", style, ...props }) => (
+const Wave = ({
+  width = "calc(100vw + 20px)",
+  fill = "white",
+  style,
+  ...props
+}) => (
   <div style={style}>
     <svg
+      style={{
+        display: "block",
+        transform: "translateX(-10px)",
+        ...props.styles,
+      }}
       width={width}
-      style={{ display: "block", ...props.styles }}
       viewBox="0 0 1440 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

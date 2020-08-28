@@ -1,6 +1,6 @@
 import React from "react";
 
-const Wave = ({ width = "100vw", fill = "white", style, ...props }) => (
+const Wave = ({ width = "calc(100vw + 20px)", fill = "white", style, ...props }) => (
   <div style={style}>
     <svg
       width={width}

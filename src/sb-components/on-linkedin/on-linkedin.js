@@ -4,7 +4,6 @@ import SbEditable from "storyblok-react";
 import Layout from "../../components/layout";
 import Heading from "../../components/heading";
 import Section from "../../components/section";
-import fadeIn from "../../hoc/fadeIn";
 
 const Row = styled.div`
   display: flex;
@@ -97,7 +96,7 @@ const OnLinkedIn = ({ blok }) => (
               target="_blank"
               rel="noreferrer"
             >
-              {React.createElement(fadeIn(LinkedInPost), {
+              {React.createElement((LinkedInPost), {
                 image: blok.linkedin_post && blok.linkedin_post.filename,
               })}
             </a>

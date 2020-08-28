@@ -38,9 +38,13 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const Logo = styled.img`
-  max-width: 110px;
-  height: 100%;
+const Logo = styled.a`
+  width: 110px;
+  height: 42px;
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   margin: 20px 0;
 
   @media (max-width: 450px) {
@@ -65,7 +69,7 @@ const Nav = ({ blok }) => (
     <Wrapper>
       <Layout>
         <Header>
-          <Logo src={blok.logo && blok.logo.filename} />
+          <Logo href="#home" src={blok.logo && blok.logo.filename} />
           <FlexEnd>
             <NavList>
               {blok.links.map((link) =>

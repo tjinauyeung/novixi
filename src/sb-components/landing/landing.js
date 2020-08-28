@@ -145,7 +145,7 @@ const Landing = ({ blok }) => {
               )}
             </span>
           </Title>
-          <Image src={image} />
+          <Image src={image} alt="Picture of a candidate for NOVIXI - Executive Search" />
         </Content>
         <Wave fill="#fff" style={{ position: "absolute", bottom: -2 }} />
       </Wrapper>

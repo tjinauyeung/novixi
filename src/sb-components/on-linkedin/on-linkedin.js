@@ -84,7 +84,7 @@ const OnLinkedIn = ({ blok }) => (
               <Heading color="#fff">
                 <span>{blok.title}</span>
                 <span>
-                  <LinkedIn src={blok.linkedin && blok.linkedin.filename} />
+                  <LinkedIn src={blok.linkedin && blok.linkedin.filename} alt="Testimonial on LinkedIn for NOVIXI - Executive Search" />
                 </span>
               </Heading>
             </Sticky>

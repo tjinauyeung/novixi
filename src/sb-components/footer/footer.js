@@ -134,7 +134,7 @@ const Footer = (props) => (
       <Padding>
         <Layout>
           <Content>
-            <Logo src={props.blok.logo && props.blok.logo.filename} />
+            <Logo src={props.blok.logo && props.blok.logo.filename} alt="Logo of NOVIXI - Executive Search" />
             <Contact>
               <Title>Contact</Title>
               <ContactItem>

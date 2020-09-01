@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import SbEditable from "storyblok-react";
 import styled, { keyframes } from "styled-components";
 import Wave from "../../components/wave";
@@ -126,30 +126,35 @@ const Landing = ({ blok }) => {
   }, [blok]);
 
   return (
-    <SbEditable content={blok}>
+    <Fragment>
       <div id="home" />
       <Wrapper>
-        <Content>
-          <Title>
-            <span>
-              {get(blok, "title.content", []).map((entry, i) =>
-                entry.content ? (
-                  entry.content.map((span) => (
-                    <Text key={span.text} emphasize={span.marks}>
-                      {span.text}
-                    </Text>
-                  ))
-                ) : (
-                  <br />
-                )
-              )}
-            </span>
-          </Title>
-          <Image src={image} alt="Picture of a candidate for NOVIXI - Executive Search" />
-        </Content>
+        <SbEditable content={blok}>
+          <Content>
+            <Title>
+              <span>
+                {get(blok, "title.content", []).map((entry, i) =>
+                  entry.content ? (
+                    entry.content.map((span) => (
+                      <Text key={span.text} emphasize={span.marks}>
+                        {span.text}
+                      </Text>
+                    ))
+                  ) : (
+                    <br />
+                  )
+                )}
+              </span>
+            </Title>
+            <Image
+              src={image}
+              alt="Picture of a candidate for NOVIXI - Executive Search"
+            />
+          </Content>
+        </SbEditable>
         <Wave fill="#fff" style={{ position: "absolute", bottom: -2 }} />
       </Wrapper>
-    </SbEditable>
+    </Fragment>
   );
 };
 

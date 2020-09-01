@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import SbEditable from "storyblok-react";
 import Layout from "../../components/layout";
@@ -53,7 +53,6 @@ const Paragraph = styled.div`
   line-height: 1.8;
   max-width: 550px;
 
-
   @media screen and (max-width: 768px) {
     font-size: 20px;
   }
@@ -90,34 +89,36 @@ const Arrow = styled.div`
 `;
 
 const HowWeDiffer = ({ blok }) => (
-  <SbEditable content={blok}>
+  <Fragment>
     <div id="how-we-differ" />
     <Section background="var(--color-bg-dark)">
-      <Layout>
-        <Row>
-          <Col>
-            <Sticky>
-              <Heading color="#fff">{blok.title}</Heading>
-            </Sticky>
-          </Col>
-          <Col>
-            {_.get(blok, "description.content", []).map((entry, i) => (
-              <Paragraph key={i}>
-                {_.get(entry, "content", []).map((span, j) => (
-                  <Text key={j} emphasize={span.marks}>
-                    {span.text}
-                  </Text>
-                ))}
-              </Paragraph>
-            ))}
-          </Col>
-        </Row>
-        <Arrow
-          image={blok.background_image && blok.background_image.filename}
-        />
-      </Layout>
+      <SbEditable content={blok}>
+        <Layout>
+          <Row>
+            <Col>
+              <Sticky>
+                <Heading color="#fff">{blok.title}</Heading>
+              </Sticky>
+            </Col>
+            <Col>
+              {_.get(blok, "description.content", []).map((entry, i) => (
+                <Paragraph key={i}>
+                  {_.get(entry, "content", []).map((span, j) => (
+                    <Text key={j} emphasize={span.marks}>
+                      {span.text}
+                    </Text>
+                  ))}
+                </Paragraph>
+              ))}
+            </Col>
+          </Row>
+          <Arrow
+            image={blok.background_image && blok.background_image.filename}
+          />
+        </Layout>
+      </SbEditable>
     </Section>
-  </SbEditable>
+  </Fragment>
 );
 
 export default HowWeDiffer;

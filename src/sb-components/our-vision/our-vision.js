@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import SbEditable from "storyblok-react";
 import Layout from "../../components/layout";
 import Heading from "../../components/heading";
@@ -34,25 +34,27 @@ const Description = styled.p`
 const REGEX_NEW_LINE = /\r?\n/;
 
 const OurVision = ({ blok }) => (
-  <SbEditable content={blok}>
+  <Fragment>
     <div id="our-vision" />
     <Section>
       <Layout>
-        <Container>
-          <Heading>{blok.title}</Heading>
-          {blok.description
-            .split(REGEX_NEW_LINE)
-            .filter((paragraph) => Boolean(paragraph))
-            .map((paragraph, i) =>
-              React.createElement(fadeIn(Description), {
-                key: i,
-                children: paragraph,
-              })
-            )}
-        </Container>
+        <SbEditable content={blok}>
+          <Container>
+            <Heading>{blok.title}</Heading>
+            {blok.description
+              .split(REGEX_NEW_LINE)
+              .filter((paragraph) => Boolean(paragraph))
+              .map((paragraph, i) =>
+                React.createElement(fadeIn(Description), {
+                  key: i,
+                  children: paragraph,
+                })
+              )}
+          </Container>
+        </SbEditable>
       </Layout>
     </Section>
-  </SbEditable>
+  </Fragment>
 );
 
 export default OurVision;

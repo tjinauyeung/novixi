@@ -99,8 +99,8 @@ const Description = styled.p`
 `;
 
 const ContactBadge = ({ blok }) => (
-  <SbEditable content={blok}>
-    <Wrapper>
+  <Wrapper>
+    <SbEditable content={blok}>
       <Badge href={blok.phone} target="_blank" rel="noreferrer">
         <Avatar image={blok.image && blok.image.filename} />
         <div>
@@ -108,8 +108,8 @@ const ContactBadge = ({ blok }) => (
           <Description>{blok.description}</Description>
         </div>
       </Badge>
-    </Wrapper>
-  </SbEditable>
+    </SbEditable>
+  </Wrapper>
 );
 
 export default ContactBadge;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import SbEditable from "storyblok-react";
 import styled, { keyframes } from "styled-components";
 import Heading from "../../components/heading";
@@ -238,81 +238,83 @@ const ContactUs = ({ blok }) => {
   };
 
   return (
-    <SbEditable content={blok}>
+    <Fragment>
       <div id="contact-us" />
       <Section background="var(--color-bg-light)">
         <Layout>
-          <Wrapper>
-            <Heading>{blok.title}</Heading>
-            <Description>{blok.description}</Description>
-            {status === "SUCCESS" ? (
-              <SuccessMessage>
-                <h1>{blok.success_title}</h1>
-                <p>{blok.success_description}</p>
-              </SuccessMessage>
-            ) : (
-              <FormWrapper
-                onSubmit={submit}
-                action="https://formspree.io/xoqkrrlk"
-                method="POST"
-              >
-                <Row>
-                  <Input
-                    htmlFor="name"
-                    type="name"
-                    name="name"
-                    placeholder={blok.form_name}
-                  />
-
-                  <Input
-                    type="company"
-                    name="company"
-                    placeholder={blok.form_company}
-                  />
-                </Row>
-                <Row>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder={blok.form_email}
-                  />
-
-                  <Input
-                    type="phone"
-                    name="phone"
-                    placeholder={blok.form_phone}
-                  />
-                </Row>
-                <Row>
-                  <TextArea name="message" placeholder={blok.form_message} />
-                </Row>
-                <Row>
-                  <CheckboxLabel>
-                    <Checkbox
-                      type="radio"
-                      name="contact_preference"
-                      value="by_phone"
+          <SbEditable content={blok}>
+            <Wrapper>
+              <Heading>{blok.title}</Heading>
+              <Description>{blok.description}</Description>
+              {status === "SUCCESS" ? (
+                <SuccessMessage>
+                  <h1>{blok.success_title}</h1>
+                  <p>{blok.success_description}</p>
+                </SuccessMessage>
+              ) : (
+                <FormWrapper
+                  onSubmit={submit}
+                  action="https://formspree.io/xoqkrrlk"
+                  method="POST"
+                >
+                  <Row>
+                    <Input
+                      htmlFor="name"
+                      type="name"
+                      name="name"
+                      placeholder={blok.form_name}
                     />
-                    <Check />
-                    <span>{blok.form_contact_preference_phone}</span>
-                  </CheckboxLabel>
-                  <CheckboxLabel>
-                    <Checkbox
-                      type="radio"
-                      name="contact_preference"
-                      value="by_email"
+
+                    <Input
+                      type="company"
+                      name="company"
+                      placeholder={blok.form_company}
                     />
-                    <Check />
-                    <span>{blok.form_contact_preference_email}</span>
-                  </CheckboxLabel>
-                </Row>
-                <Button>{loading ? <Loader /> : blok.form_button}</Button>
-              </FormWrapper>
-            )}
-          </Wrapper>
+                  </Row>
+                  <Row>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder={blok.form_email}
+                    />
+
+                    <Input
+                      type="phone"
+                      name="phone"
+                      placeholder={blok.form_phone}
+                    />
+                  </Row>
+                  <Row>
+                    <TextArea name="message" placeholder={blok.form_message} />
+                  </Row>
+                  <Row>
+                    <CheckboxLabel>
+                      <Checkbox
+                        type="radio"
+                        name="contact_preference"
+                        value="by_phone"
+                      />
+                      <Check />
+                      <span>{blok.form_contact_preference_phone}</span>
+                    </CheckboxLabel>
+                    <CheckboxLabel>
+                      <Checkbox
+                        type="radio"
+                        name="contact_preference"
+                        value="by_email"
+                      />
+                      <Check />
+                      <span>{blok.form_contact_preference_email}</span>
+                    </CheckboxLabel>
+                  </Row>
+                  <Button>{loading ? <Loader /> : blok.form_button}</Button>
+                </FormWrapper>
+              )}
+            </Wrapper>
+          </SbEditable>
         </Layout>
       </Section>
-    </SbEditable>
+    </Fragment>
   );
 };
 

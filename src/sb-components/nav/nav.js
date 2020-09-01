@@ -65,9 +65,9 @@ const Lang = styled.div`
 `;
 
 const Nav = ({ blok }) => (
-  <SbEditable content={blok}>
-    <Wrapper>
-      <Layout>
+  <Wrapper>
+    <Layout>
+      <SbEditable content={blok}>
         <Header>
           <Logo href="#home" src={blok.logo && blok.logo.filename} />
           <FlexEnd>
@@ -84,9 +84,9 @@ const Nav = ({ blok }) => (
             </a> */}
           </FlexEnd>
         </Header>
-      </Layout>
-    </Wrapper>
-  </SbEditable>
+      </SbEditable>
+    </Layout>
+  </Wrapper>
 );
 
 export default Nav;

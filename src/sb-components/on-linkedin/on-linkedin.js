@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import SbEditable from "storyblok-react";
 import Layout from "../../components/layout";
@@ -74,37 +74,42 @@ const LinkedIn = styled.img`
 `;
 
 const OnLinkedIn = ({ blok }) => (
-  <SbEditable content={blok}>
+  <Fragment>
     <div id="on-linkedin" />
     <Section background="var(--color-bg-linkedin)">
-      <Layout>
-        <Row>
-          <Col>
-            <Sticky>
-              <Heading color="#fff">
-                <span>{blok.title}</span>
-                <span>
-                  <LinkedIn src={blok.linkedin && blok.linkedin.filename} alt="Testimonial on LinkedIn for NOVIXI - Executive Search" />
-                </span>
-              </Heading>
-            </Sticky>
-          </Col>
-          <Col>
-            <a
-              style={{ cursor: "pointer" }}
-              href="https://www.linkedin.com/posts/mirjamhesselmans_leadership-diversity-inclusion-activity-6694486970413928448-kyzw"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {React.createElement((LinkedInPost), {
-                image: blok.linkedin_post && blok.linkedin_post.filename,
-              })}
-            </a>
-          </Col>
-        </Row>
-      </Layout>
+      <SbEditable content={blok}>
+        <Layout>
+          <Row>
+            <Col>
+              <Sticky>
+                <Heading color="#fff">
+                  <span>{blok.title}</span>
+                  <span>
+                    <LinkedIn
+                      src={blok.linkedin && blok.linkedin.filename}
+                      alt="Testimonial on LinkedIn for NOVIXI - Executive Search"
+                    />
+                  </span>
+                </Heading>
+              </Sticky>
+            </Col>
+            <Col>
+              <a
+                style={{ cursor: "pointer" }}
+                href="https://www.linkedin.com/posts/mirjamhesselmans_leadership-diversity-inclusion-activity-6694486970413928448-kyzw"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {React.createElement(LinkedInPost, {
+                  image: blok.linkedin_post && blok.linkedin_post.filename,
+                })}
+              </a>
+            </Col>
+          </Row>
+        </Layout>
+      </SbEditable>
     </Section>
-  </SbEditable>
+  </Fragment>
 );
 
 export default OnLinkedIn;

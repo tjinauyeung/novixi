@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import SbEditable from "storyblok-react";
 import styled from "styled-components";
 import Layout from "../../components/layout";
@@ -121,7 +121,7 @@ const Spacer = styled.span`
   min-height: 20px;
 `;
 const Footer = (props) => (
-  <SbEditable content={props.blok}>
+  <Fragment>
     <Wave
       style={{
         background: "var(--color-bg-light)",
@@ -133,76 +133,85 @@ const Footer = (props) => (
     <Wrapper>
       <Padding>
         <Layout>
-          <Content>
-            <Logo src={props.blok.logo && props.blok.logo.filename} alt="Logo of NOVIXI - Executive Search" />
-            <Contact>
-              <Title>Contact</Title>
-              <ContactItem>
-                <Icon>
-                  <Phone width={20} height={20} fill="#fff" strokeWidth={0} />
-                </Icon>
-                <div>
-                  <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
-                    {props.blok.contact_phone_mobile}
-                  </ContactValue>
-                  <ContactValue href={`tel:${props.blok.contact_phone_mobile}`}>
-                    {props.blok.contact_phone_office}
-                  </ContactValue>
-                </div>
-              </ContactItem>
-              <ContactItem>
-                <Icon>
-                  <Email
-                    width={22}
-                    height={22}
-                    fill="#fff"
-                    strokeWidth={2}
-                    stroke="var(--color-primary-dark)"
-                  />
-                </Icon>
-                <div>
-                  <ContactValue href={`mailto:${props.blok.contact_email}`}>
-                    {props.blok.contact_email}
-                  </ContactValue>
-                </div>
-              </ContactItem>
-              <ContactItem>
-                <Icon>
-                  <LinkedIn
-                    width={20}
-                    height={20}
-                    fill="#fff"
-                    strokeWidth={0}
-                  />
-                </Icon>
-                <div>
-                  <ContactValue
-                    href={props.blok.contact_linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {props.blok.contact_linkedin_label}
-                  </ContactValue>
-                </div>
-              </ContactItem>
-            </Contact>
-            <About>
-              <Title>{props.blok.about_title}</Title>
-              <AboutParagraph>
-                {_.get(props, "blok.about_description.content", []).map(
-                  (entry, i) => {
-                    if (entry.content) {
-                      return entry.content.map((span) => (
-                        <span key={i}>{span.text}</span>
-                      ));
-                    } else {
-                      return <Spacer key={i} />;
+          <SbEditable content={props.blok}>
+            <Content>
+              <Logo
+                src={props.blok.logo && props.blok.logo.filename}
+                alt="Logo of NOVIXI - Executive Search"
+              />
+              <Contact>
+                <Title>Contact</Title>
+                <ContactItem>
+                  <Icon>
+                    <Phone width={20} height={20} fill="#fff" strokeWidth={0} />
+                  </Icon>
+                  <div>
+                    <ContactValue
+                      href={`tel:${props.blok.contact_phone_mobile}`}
+                    >
+                      {props.blok.contact_phone_mobile}
+                    </ContactValue>
+                    <ContactValue
+                      href={`tel:${props.blok.contact_phone_mobile}`}
+                    >
+                      {props.blok.contact_phone_office}
+                    </ContactValue>
+                  </div>
+                </ContactItem>
+                <ContactItem>
+                  <Icon>
+                    <Email
+                      width={22}
+                      height={22}
+                      fill="#fff"
+                      strokeWidth={2}
+                      stroke="var(--color-primary-dark)"
+                    />
+                  </Icon>
+                  <div>
+                    <ContactValue href={`mailto:${props.blok.contact_email}`}>
+                      {props.blok.contact_email}
+                    </ContactValue>
+                  </div>
+                </ContactItem>
+                <ContactItem>
+                  <Icon>
+                    <LinkedIn
+                      width={20}
+                      height={20}
+                      fill="#fff"
+                      strokeWidth={0}
+                    />
+                  </Icon>
+                  <div>
+                    <ContactValue
+                      href={props.blok.contact_linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {props.blok.contact_linkedin_label}
+                    </ContactValue>
+                  </div>
+                </ContactItem>
+              </Contact>
+              <About>
+                <Title>{props.blok.about_title}</Title>
+                <AboutParagraph>
+                  {_.get(props, "blok.about_description.content", []).map(
+                    (entry, i) => {
+                      if (entry.content) {
+                        return entry.content.map((span) => (
+                          <span key={i}>{span.text}</span>
+                        ));
+                      } else {
+                        return <Spacer key={i} />;
+                      }
                     }
-                  }
-                )}
-              </AboutParagraph>
-            </About>
-          </Content>
+                  )}
+                </AboutParagraph>
+              </About>
+            </Content>
+          </SbEditable>
         </Layout>
       </Padding>
       <FooterBar>
@@ -230,7 +239,7 @@ const Footer = (props) => (
         <span>{props.blok.footer_bar_text}</span>
       </FooterBar>
     </Wrapper>
-  </SbEditable>
+  </Fragment>
 );
 
 export default Footer;

@@ -79,7 +79,14 @@ const Nav = ({ blok }) => (
                 })
               )}
             </NavList>
-            <a href={blok.path}>
+            <a
+              href={`/${
+                blok.path && blok.path.cached_url === "nl"
+                  ? blok.path.cached_url
+                  : ""
+              }`}
+            >
+              {console.log(blok.path)}
               <Lang image={blok.language} />
             </a>
           </FlexEnd>

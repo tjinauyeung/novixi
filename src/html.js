@@ -3,7 +3,7 @@ import React from "react";
 export default class HTML extends React.Component {
   render() {
     return (
-      <html lang="nl">
+      <html lang="en">
         <head>
           <meta charSet="utf-8" />
           <meta
@@ -16,32 +16,32 @@ export default class HTML extends React.Component {
           </title>
           <meta
             name="title"
-            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - We recruit leaders who guide your company to the new world."
           />
           <meta
             name="description"
-            content="Een organisatie die wil groeien en transformeren heeft executives nodig die een visie hebben, die een duidelijke stip op de horizon zetten en die meebouwen aan nieuwe proposities. Leiders die nieuwe manieren van werken omarmen en zich inzetten voor een innovatieve bedrijfscultuur."
+            content="To grow and transform an organization needs executives with a vision, who put a clear dot on the horizon and who help build new propositions. Leaders that embrace new ways of working and commit themselves to an innovative corporate culture."
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.novixi.com " />
           <meta
             property="og:title"
-            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - We recruit leaders who guide your company to the new world."
           />
           <meta
             property="og:description"
-            content="Een organisatie die wil groeien en transformeren heeft executives nodig die een visie hebben, die een duidelijke stip op de horizon zetten en die meebouwen aan nieuwe proposities. Leiders die nieuwe manieren van werken omarmen en zich inzetten voor een innovatieve bedrijfscultuur."
+            content="To grow and transform an organization needs executives with a vision, who put a clear dot on the horizon and who help build new propositions. Leaders that embrace new ways of working and commit themselves to an innovative corporate culture."
           />
           <meta property="og:image" content="https://a.storyblok.com/f/89986/1200x608/0734046bde/novixi.png" />
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://www.novixi.com" />
           <meta
             property="twitter:title"
-            content="NOVIXI - Executive Search - Wij leveren de leiders die bedrijven begeleiden naar de nieuwe wereld."
+            content="NOVIXI - Executive Search - We recruit leaders who guide your company to the new world."
           />
           <meta
             property="twitter:description"
-            content="Een organisatie die wil groeien en transformeren heeft executives nodig die een visie hebben, die een duidelijke stip op de horizon zetten en die meebouwen aan nieuwe proposities. Leiders die nieuwe manieren van werken omarmen en zich inzetten voor een innovatieve bedrijfscultuur."
+            content="To grow and transform an organization needs executives with a vision, who put a clear dot on the horizon and who help build new propositions. Leaders that embrace new ways of working and commit themselves to an innovative corporate culture."
           />
           <meta property="twitter:image" content="https://a.storyblok.com/f/89986/1200x608/0734046bde/novixi.png" />
           {this.props.headComponents}

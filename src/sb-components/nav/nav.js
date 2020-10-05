@@ -79,9 +79,9 @@ const Nav = ({ blok }) => (
                 })
               )}
             </NavList>
-            {/* <a href="/english">
+            <a href={blok.path}>
               <Lang image={blok.language} />
-            </a> */}
+            </a>
           </FlexEnd>
         </Header>
       </SbEditable>

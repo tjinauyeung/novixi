@@ -218,21 +218,21 @@ const Footer = (props) => (
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://a.storyblok.com/f/89986/x/4e5dd9fe02/novixi-terms-and-conditions-nl.pdf"
+          href={_.get(props.blok.terms_nl, 'filename')}
         >
           Terms & Conditions (NL)
         </a>
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://a.storyblok.com/f/89986/x/d29adad9a6/novixi-terms-and-conditions-en.pdf"
+          href={_.get(props.blok.terms_en, 'filename')}
         >
           Terms & Conditions (EN)
         </a>
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://a.storyblok.com/f/89986/x/d71d3b3d1d/novixi-privacy-statement.pdf"
+          href={_.get(props.blok.privacy, 'filename')}
         >
           Privacy statement
         </a>

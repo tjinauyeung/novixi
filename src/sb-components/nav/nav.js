@@ -86,7 +86,6 @@ const Nav = ({ blok }) => (
                   : ""
               }`}
             >
-              {console.log(blok.path)}
               <Lang image={blok.language} />
             </a>
           </FlexEnd>
